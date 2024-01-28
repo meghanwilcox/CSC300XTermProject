@@ -2,6 +2,10 @@ html{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+body{
+    background-color: darkkhaki;
+}
+
 body, #body1, #body2, #splash_image{
     margin: 0px;
     padding: 0px;
@@ -27,8 +31,9 @@ body, #body1, #body2, #splash_image{
     background-position: center;
     width: 1550px;
     height: 500px;
-    position:fixed;
-    top:185px;
+    /* position:fixed; */
+    /* margin-top:100px; */
+    border: 2px solid rgb(193, 138, 99);
 }
 
 #logo{
@@ -86,9 +91,20 @@ input.search_bar{
 #hook{
     background-color: rgb(193, 138, 99);
     margin: 0px;
+    padding: 5px;
 }
 
 #hook h1{
     text-align: center;
     color:white;
+}
+
+#info_bar{
+    background-color: rgb(193, 138, 99);
+    padding: 5px;
+}
+
+#info_bar h2{
+    color: white;
+    text-align: center;
 }
