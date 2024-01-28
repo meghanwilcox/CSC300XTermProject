@@ -1,18 +1,14 @@
-html, pre{
+html, pre, .cat_facts_button, .cat_facts_button:hover, #browse_button, #browse_button:hover{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body{
-    background-color: darkkhaki;
+    background-color: rgb(207, 182, 114);
 }
 
 body, #body1, #body2, #splash_image{
     margin: 0px;
     padding: 0px;
-}
-
-#header{
-    background-color: darkkhaki;
 }
 
 #body1{
@@ -79,6 +75,14 @@ input.search_bar{
     border-radius:20px;
     margin-left: 665px;
     margin-top: 300px;
+    border: 5px solid rgb(207, 182, 114);
+    cursor:pointer;
+    color:white;
+    font-size: 22pt;
+}
+
+#browse_button:hover{
+    background-color: saddlebrown;
 }
 
 #browse_button h1{
@@ -145,4 +149,35 @@ input.search_bar{
     background-image: url('cat_prints.png');
     background-repeat: repeat-x;
     margin-top: 50px;
+}
+
+#cat_facts_container{
+    background-color: rgb(193, 138, 99);
+    padding:0px;
+    margin: 0px;
+}
+
+.button_container{
+    margin-top: 50px;
+    margin-left: 60px;
+}
+
+#info_bar h3{
+    text-align: center;
+    color: white;
+}
+
+.cat_facts_button{
+    background-color: rgb(193, 138, 99);
+    color: white;
+    padding: 15px 20px;
+    font-size: 25pt;
+    border: 5px solid rgb(207, 182, 114);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cat_facts_button:hover{
+    background-color: saddlebrown;
 }
