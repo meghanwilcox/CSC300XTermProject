@@ -27,6 +27,8 @@ body, #body1, #body2, #splash_image{
     background-position: center;
     width: 1550px;
     height: 500px;
+    position:fixed;
+    top:185px;
 }
 
 #logo{
@@ -64,4 +66,29 @@ input.search_bar{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: white;
+}
+
+#browse_button{
+    background-color: rgb(193, 138, 99);
+    width: 250px;
+    height: 80px;
+    border-radius:20px;
+    margin-left: 665px;
+    margin-top: 300px;
+}
+
+#browse_button h1{
+    color: white;
+    text-align: center;
+}
+
+#hook{
+    background-color: rgb(193, 138, 99);
+    margin: 0px;
+}
+
+#hook h1{
+    text-align: center;
+    color:white;
 }
