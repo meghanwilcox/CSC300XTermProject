@@ -181,3 +181,14 @@ input.search_bar{
 .cat_facts_button:hover{
     background-color: saddlebrown;
 }
+
+footer{
+    height: 100px;
+    background-color:  rgb(207, 182, 114); 
+    color: white;
+    font-size: medium;
+}
+
+#footer{
+    text-align: center;
+}
