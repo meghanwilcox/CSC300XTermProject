@@ -1,4 +1,4 @@
-html, pre, .cat_facts_button, .cat_facts_button:hover, #browse_button, #browse_button:hover{
+html, pre, #getCatFactButton, #getCatFactButton:hover, #browse_button, #browse_button:hover{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -167,7 +167,7 @@ input.search_bar{
     color: white;
 }
 
-.cat_facts_button{
+#getCatFactButton{
     background-color: rgb(193, 138, 99);
     color: white;
     padding: 15px 20px;
@@ -178,6 +178,6 @@ input.search_bar{
     transition: background-color 0.3s;
 }
 
-.cat_facts_button:hover{
+#getCatFactButton:hover{
     background-color: saddlebrown;
 }
