@@ -22,7 +22,7 @@ body, #body1, #body2, #splash_image{
 }
 
 #body2{
-    background-image: url('splashimage.png'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+    background-image: url('images/splashimage.png'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
     background-size: cover; /* Adjust the background size property based on your preference */
     background-position: center;
     width: 1550px;
@@ -146,7 +146,7 @@ input.search_bar{
 .cat_prints{
     height: 90px;
     border: 0px;
-    background-image: url('cat_prints.png');
+    background-image: url('images/cat_prints.png');
     background-repeat: repeat-x;
     margin-top: 50px;
 }
