@@ -1,4 +1,4 @@
-html, pre, #getCatFactButton, #getCatFactButton:hover, #browse_button, #browse_button:hover{
+html, pre, #getCatFactButton, #getCatFactButton:hover, #browse_button, #browse_button:hover, .nav_bar{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -50,9 +50,11 @@ header #body1_container{
 }
 
 input.search_bar{
-    background-color: gray;
+    background-color: rgb(207, 182, 114);
     color: white;
     border-radius: 20px;
+    border: 5px solid rgb(193, 138, 99);
+    height: 60px;
 }
 
 #search input.search_bar::placeholder{
@@ -64,11 +66,19 @@ input.search_bar{
     height: 30px;
 }
 
-.nav_bar h1{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.nav_bar{
+    background-color: rgb(207, 182, 114);
+    width: 140px;
+    height: 40px;
+    border: 5px solid rgb(193, 138, 99);
     color: white;
+    font-size: 16pt;
+    border-radius: 20px;
+}
+
+.nav_bar:hover{
+    background-color: saddlebrown;
+    cursor: pointer;
 }
 
 #browse_button{
@@ -158,11 +168,16 @@ input.search_bar{
 }
 
 .fprod_image{
-    margin-right: 30px;
-    margin-bottom: 40px;
+    margin-right: 35px;
+    margin-bottom: 35px;
     width: 200px;
     height: 200px;
     border-radius: 20px;
+    border: 5px solid rgb(193, 138, 99);
+}
+
+.fprod_image:hover{
+    border: 5px solid saddlebrown;
 }
 
 .fprod_label{
