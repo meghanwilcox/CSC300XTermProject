@@ -8,54 +8,54 @@
 </head>
 
 <body>
+    <header>
+        <!-- body1_container holds the header/navigation bar thats present on every page-->
+        <div id="body1_container">
+            <img src="images/sipnsnuggles_logo.png" id="logo">
 
+            <div id="search">
+                <input type="text" class="search_bar" placeholder="Search">
+            </div>
 
-
-    <div id="body1">
-        <img src="images/sipnsnuggles_logo.png" id="logo">
-
-        <div id="search">
-            <input type="text" class="search_bar" placeholder="Search">
+            <!-- ALLI TODO: Edit navigation bar elements here! Make sure they support a link to a page -->
+            <div class="nav_bar">
+                <a href="index.html">
+                    <h1>Coffee</h1>
+                </a>
+            </div>
+            <div class="nav_bar">
+                <a href="index.html">
+                    <h1>Tea</h1>
+                </a>
+            </div>
+            <div class="nav_bar">
+                <a href="index.html">
+                    <h1>Accesories</h1>
+                </a>
+            </div>
+            <div class="nav_bar">
+                <a href="index.html">
+                    <h1> <i class="fa-solid fa-cart-shopping"></i> Cart</h1>
+                </a>
+            </div>
         </div>
+    </header>
 
-        <!-- ALLI TODO: Edit navigation bar elements here! Make sure they support a link to a page -->
-        <div class="nav_bar">
-            <a href="index.html">
-            <h1>Coffee</h1>
-            </a>
-        </div>
-        <div class="nav_bar">
-            <a href="index.html">
-            <h1>Tea</h1>
-            </a>
-        </div>
-        <div class="nav_bar">
-            <a href="index.html">
-            <h1>Accesories</h1>
-            </a>
-        </div>
-        <div class="nav_bar">
-            <a href="index.html">
-            <h1> <i class="fa-solid fa-cart-shopping"></i> Cart</h1>
-            </a>
-        </div>
-    </div>
-
+    <!-- the hook is the box of text below the nav bar-->
     <div id="hook">
         <h1>🐱 Every cup of coffee or tea from Sip 'n Snuggles helps a homeless cat find its forever home! 🐱</h1>
     </div>
 
-    <div id="body2">
+    <!-- the body2 container holds the splash image and a link to browse our coffees and teas-->
+    <div id="body2_container">
         <div>
-           
             <a href="index.html">
                 <button id="browse_button">Browse our <br>Coffees & Teas</button>
             </a>
-            
         </div>
     </div>
 
-    <div id="info_bar">
+    <div id="welcome_bar">
         <h2>
             Welcome to Sip 'n Snuggles! We are a fully online, non-profit shop selling coffees, teas, and beverage
             accessories.
@@ -69,23 +69,26 @@
             that your purchase
             is benefitting cats in need.
         </h2>
+    </div>
 
+    <div id="cat_prints_container">
         <hr class="cat_prints">
+    </div>
 
-        <!-- ALLI TODO: make this link to the product page?? -->
-        <div id="fproduct_1" class="featured_prod">
-            <div class="fprod_text_box">
-                <a href="index.html">
-                <h1 class="fprod">
-                    FEATRUED<br>
-                    PRODUCT!<br>
-                    20% OFF
-                </h1>
-                </a>
-            </div>
+    <!-- ALLI TODO: make this link to the product page?? -->
+    <div id="fproduct">
 
-            <img src="https://i.pinimg.com/originals/51/e6/d6/51e6d60a6bcbf0a5a35387da3c858b46.jpg" class="fprod_image">
+        <div class="fprod_text_box">
+            <h1 class="fprod">
+                FEATRUED PRODUCT! 20% OFF
+            </h1>
+        </div>
 
+        <div id="fprod_1">
+            <a href="index.html">
+                <img src="https://i.pinimg.com/originals/51/e6/d6/51e6d60a6bcbf0a5a35387da3c858b46.jpg" class="fprod_image">
+            </a>
+            
             <div class="fprod_label">
                 <h1>
                     Kozy Kitty Mug<br>
@@ -94,13 +97,10 @@
                 </h1>
             </div>
         </div>
+    </div>
 
+    <div id="cat_prints_container">
         <hr class="cat_prints">
-
-        <div class="container">
-            <button id="getCatFactButton">Get Cat Fact</button>
-        </div>
-    
     </div>
 
 </body>
