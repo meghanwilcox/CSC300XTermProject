@@ -14,9 +14,9 @@ body, header #body1_container, #body2_container, #splash_image{
 header #body1_container{
     background-color: rgb(207, 182, 114);
     display: inline-flex;
-    flex-wrap:wrap;
+    flex-wrap:no-wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-a;
     width: 100%;
     margin: 0 auto;
     padding:10px;
@@ -34,7 +34,7 @@ header #body1_container{
 }
 
 #logo{
-    width: 500px;
+    width: 25%;
     height: auto;
 }
 
@@ -42,6 +42,13 @@ header #body1_container{
     margin-top: 5px;
     padding: 0 10px;
     margin-right: 50px;
+    background-color: rgb(207, 182, 114);
+    width: 120px;
+    height: 40px;
+    border: 5px solid rgb(193, 138, 99);
+    color: white;
+    font-size: 14pt;
+    border-radius: 20px;
 }
 
 #search{
@@ -64,16 +71,6 @@ input.search_bar{
 
 #search input.search_bar{
     height: 30px;
-}
-
-.nav_bar{
-    background-color: rgb(207, 182, 114);
-    width: 140px;
-    height: 40px;
-    border: 5px solid rgb(193, 138, 99);
-    color: white;
-    font-size: 16pt;
-    border-radius: 20px;
 }
 
 .nav_bar:hover{
@@ -102,6 +99,7 @@ input.search_bar{
 }
 
 #hook{
+    display: inline;
     width:100%;
     background-color: rgb(193, 138, 99);
     margin: 0px;
@@ -188,7 +186,7 @@ a:link {
     color: rgb(193, 138, 99);
 }
 
-a:visted {
+a:visited{
     color: rgb(207, 182, 114);
 }
 
