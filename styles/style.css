@@ -1,37 +1,40 @@
-html, pre, #getCatFactButton, #getCatFactButton:hover, #browse_button, #browse_button:hover{
+html, pre, #getCatFactButton, #getCatFactButton:hover, #browse_button, #browse_button:hover, .nav_bar{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body{
-    background-color: rgb(207, 182, 114);
+    background-color: rgb(193, 138, 99);
 }
 
-body, #body1, #body2, #splash_image{
+body, header #body1_container, #body2_container, #splash_image{
     margin: 0px;
     padding: 0px;
 }
 
-#body1{
-    display: flex;
+header #body1_container{
+    background-color: rgb(207, 182, 114);
+    display: inline-flex;
+    flex-wrap: no-wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-a;
     width: 100%;
     margin: 0 auto;
-    max-width: 1550px;
     padding:10px;
 }
 
-#body2{
-    background-image: url('images/splashimage.png'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
-    background-size: cover; /* Adjust the background size property based on your preference */
+#body2_container{
+    background-image: url('/images/splashimage.png'); 
+    background-size: cover; 
     background-position: center;
-    width: 1550px;
+    width: 100%;
     height: 500px;
-    border: 2px solid rgb(193, 138, 99);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #logo{
-    width: 500px;
+    width: 25%;
     height: auto;
 }
 
@@ -39,6 +42,13 @@ body, #body1, #body2, #splash_image{
     margin-top: 5px;
     padding: 0 10px;
     margin-right: 50px;
+    background-color: rgb(207, 182, 114);
+    width: 120px;
+    height: 40px;
+    border: 5px solid rgb(193, 138, 99);
+    color: white;
+    font-size: 14pt;
+    border-radius: 20px;
 }
 
 #search{
@@ -47,9 +57,11 @@ body, #body1, #body2, #splash_image{
 }
 
 input.search_bar{
-    background-color: gray;
+    background-color: rgb(207, 182, 114);
     color: white;
     border-radius: 20px;
+    border: 5px solid rgb(193, 138, 99);
+    height: 60px;
 }
 
 #search input.search_bar::placeholder{
@@ -61,11 +73,9 @@ input.search_bar{
     height: 30px;
 }
 
-.nav_bar h1{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: white;
+.nav_bar:hover{
+    background-color: saddlebrown;
+    cursor: pointer;
 }
 
 #browse_button{
@@ -73,8 +83,6 @@ input.search_bar{
     width: 250px;
     height: 80px;
     border-radius:20px;
-    margin-left: 665px;
-    margin-top: 300px;
     border: 5px solid rgb(207, 182, 114);
     cursor:pointer;
     color:white;
@@ -91,6 +99,8 @@ input.search_bar{
 }
 
 #hook{
+    display: inline;
+    width:100%;
     background-color: rgb(193, 138, 99);
     margin: 0px;
     padding: 5px;
@@ -101,106 +111,104 @@ input.search_bar{
     color:white;
 }
 
-#info_bar{
+#welcome_bar{
+    display: flex;
+    flex-wrap: wrap;
     background-color: rgb(193, 138, 99);
-    padding: 5px;
     text-align: center;
+    padding: 5px;
+    margin-bottom: 20px;
 }
 
-#info_bar h2{
-    color: white;
+#welcome_bar h2{
+    color:white;
 }
 
-#fproduct_1{
+.cat_prints{
+    height: 90px;
+    border: 0px;
+    background-image: url('/images/cat_prints.png');
+    background-repeat: repeat-x;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+#cat_prints_container{
+    background-color: rgb(193, 138, 99);
+    padding:0px;
+    margin: 0px;
+}
+
+#fproduct{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-direction: column;
     width: 100%;
     margin: 0 auto;
     max-width: 1550px;
     padding:10px;
 }
 
-.fprod_text_box{
-    margin-top: 20px;
+ .fprod_text_box{
+    margin: 40px;
 }
 
 .fprod{
     color: white;
     font-size: 40pt;
-    margin-left: 400px;
+    margin: 0px;
+} 
+
+#fprod_1{
+    display:flex;
+    justify-content: space-between;
 }
 
 .fprod_image{
-    margin-top: 50px;
+    margin-right: 35px;
+    margin-bottom: 35px;
     width: 200px;
     height: 200px;
+    border-radius: 20px;
+    border: 5px solid rgb(193, 138, 99);
+}
+
+.fprod_image:hover{
+    border: 5px solid saddlebrown;
 }
 
 .fprod_label{
     color: white;
-    margin-right: 400px;
-    text-align: left;
 }
 
-.cat_prints{
-    height: 90px;
-    border: 0px;
-    background-image: url('images/cat_prints.png');
-    background-repeat: repeat-x;
-    margin-top: 50px;
+#vdaysaleimage{
+    margin-left: 30px;
 }
 
-#cat_facts_container{
-    background-color: rgb(193, 138, 99);
-    padding:0px;
-    margin: 0px;
+.fprod_label #vday h1{
+    text-align: right;
 }
 
-.button_container{
-    margin-top: 50px;
-    margin-left: 60px;
+footer #footer_background{
+    display: flex;
+    align-items: flex-end;
+    background-color: rgb(207, 182, 114);
+    width: 100%;
+    height: 110px;
 }
 
-#info_bar h3{
+footer #coffee_bean_footer_accent{
+    display:flex;
+    justify-content: center;
     text-align: center;
-    color: white;
-}
-
-#getCatFactButton{
-    background-color: rgb(193, 138, 99);
-    color: white;
-    padding: 15px 20px;
-    font-size: 25pt;
-    border: 5px solid rgb(207, 182, 114);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#getCatFactButton:hover{
-    background-color: saddlebrown;
-}
-
-a:link {
-    color: rgb(193, 138, 99);
-}
-
-a:visted {
-    color: rgb(207, 182, 114);
-}
-
-a:hover {
-    color: rgb(207, 182, 114);
-}
-
-footer{
+    background-image: url('/images/coffee-beans.png');
+    background-repeat: repeat-x;
+    width: 100%;
     height: 100px;
-    background-color:  rgb(207, 182, 114); 
+}
+
+#coffee_bean_footer_accent p{
     color: white;
     font-size: medium;
-}
-
-#footer{
-    text-align: center;
 }

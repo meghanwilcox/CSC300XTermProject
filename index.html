@@ -8,54 +8,63 @@
 </head>
 
 <body>
+    <header>
+        <!-- body1_container holds the header/navigation bar thats present on every page-->
+        <div id="body1_container"><!--inline-->
+            <img src="images/sipnsnuggles_logo.png" id="logo">
 
+            <div id="search">
+                <input type="text" class="search_bar" placeholder="Search">
+            </div>
 
+            <div>
+                <a href="index.html">
+                    <button class="nav_bar">Coffee</button>
+                </a>
+            </div>
 
-    <div id="body1">
-        <img src="images/sipnsnuggles_logo.png" id="logo">
+            <div>
+                <a href="index.html">
+                    <button class="nav_bar">Tea</button>
+                </a>
+            </div>
 
-        <div id="search">
-            <input type="text" class="search_bar" placeholder="Search">
+            <div>
+                <a href="index.html">
+                    <button class="nav_bar">Accessories</button>
+                </a>
+            </div>
+
+            <div>
+                <a href="index.html">
+                    <button class="nav_bar">Cart</button>
+                </a>
+            </div>
+
+            <div>
+                <a href="index.html">
+                    <button class="nav_bar">Login</button>
+                </a>
+            </div>
         </div>
+    </header>
 
-        
-        <div class="nav_bar">
-            <a href="index.html">
-            <h1>Coffee</h1>
-            </a>
-        </div>
-        <div class="nav_bar">
-            <a href="index.html">
-            <h1>Tea</h1>
-            </a>
-        </div>
-        <div class="nav_bar">
-            <a href="index.html">
-            <h1>Accesories</h1>
-            </a>
-        </div>
-        <div class="nav_bar">
-            <a href="index.html">
-            <h1> <i class="fa-solid fa-cart-shopping"></i> Cart</h1>
-            </a>
-        </div>
-    </div>
-
-    <div id="hook">
+    <!-- the hook is the box of text below the nav bar-->
+    <div id="hook"> <!--inline-->
         <h1>🐱 Every cup of coffee or tea from Sip 'n Snuggles helps a homeless cat find its forever home! 🐱</h1>
     </div>
 
-    <div id="body2">
+    <!-- the body2 container holds the splash image and a link to browse our coffees and teas-->
+    <div id="body2_container"> <!--block-->
         <div>
-           
             <a href="index.html">
                 <button id="browse_button">Browse our <br>Coffees & Teas</button>
             </a>
-            
         </div>
     </div>
 
-    <div id="info_bar">
+    <!--the welcome_bar container holds the description of the business-->
+    <div id="welcome_bar"> <!--block-->
         <h2>
             Welcome to Sip 'n Snuggles! We are a fully online, non-profit shop selling coffees, teas, and beverage
             accessories.
@@ -69,21 +78,27 @@
             that your purchase
             is benefitting cats in need.
         </h2>
+    </div>
 
+    <!--this container holds the cat prints that go across the screen as a divider-->
+    <div id="cat_prints_container"> <!--block-->
         <hr class="cat_prints">
+    </div>
 
-        <div id="fproduct_1" class="featured_prod">
-            <div class="fprod_text_box">
-                <a href="index.html">
-                <h1 class="fprod">
-                    FEATRUED<br>
-                    PRODUCT!<br>
-                    20% OFF
-                </h1>
-                </a>
-            </div>
+    <!--this container holds the featured product section-->
+    <div id="fproduct"> <!--block-->
 
-            <img src="https://i.pinimg.com/originals/51/e6/d6/51e6d60a6bcbf0a5a35387da3c858b46.jpg" class="fprod_image">
+        <div class="fprod_text_box">
+            <h1 class="fprod">
+                FEATRUED PRODUCT! 20% OFF
+            </h1>
+        </div>
+
+        <div id="fprod_1">
+            <a href="index.html">
+                <img src="https://i.pinimg.com/originals/51/e6/d6/51e6d60a6bcbf0a5a35387da3c858b46.jpg"
+                    class="fprod_image">
+            </a>
 
             <div class="fprod_label">
                 <h1>
@@ -93,25 +108,48 @@
                 </h1>
             </div>
         </div>
+    </div>
 
+    <!--this container holds the cat prints that go across the screen as a divider-->
+    <div id="cat_prints_container"> <!--block-->
         <hr class="cat_prints">
+    </div>
 
-        <div class="container">
-            <button id="getCatFactButton">Get Cat Fact</button>
+    <!--this container holds the featured product section-->
+    <div id="fproduct"> <!--block-->
+
+        <div class="fprod_text_box">
+            <h1 class="fprod">
+                VALENTINES DAY SALE! 40% OFF
+            </h1>
         </div>
-    
+
+        <div id="fprod_1">
+            <div class="fprod_label" id="vday">
+                <h1>
+                    <pre>
+     Sweetheart Roast
+                          <del>25.99</del>
+               NOW 15.59!
+                    </pre>
+                </h1>
+            </div>
+
+            <a href="index.html">
+                <img src="images/vdaysale.png"
+                    class="fprod_image" id="vdaysaleimage">
+            </a>
+        </div>
     </div>
 
 </body>
 
-<footer>
-    <p id="footer"></p>
-
-    <br>
-
-    <br>
-
-    <p> Copyright © 2024 Sip 'n Snuggles</p>
+<footer><!--this is the footer-->
+    <div id="footer_background">
+        <div id="coffee_bean_footer_accent">
+            <p>Copyright © 2024 Sip 'n Snuggles</p>
+        </div>
+    </div>
 </footer>
 
 </html>

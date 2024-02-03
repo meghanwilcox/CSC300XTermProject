@@ -9,3 +9,6 @@ Added featured product section, updated styleing, and added space for a cat fact
 
 Allison Weavil Edit - 01/29/24
 Added navigtion links and footer
+
+Meghan Wilcox Edit - 01/31/24
+Fixed layout and navigation bar issues 
