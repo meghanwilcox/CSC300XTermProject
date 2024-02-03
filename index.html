@@ -7,17 +7,16 @@
 
 </head>
 
-<body> <!--inline-->
+<body>
     <header>
         <!-- body1_container holds the header/navigation bar thats present on every page-->
-        <div id="body1_container">
+        <div id="body1_container"><!--inline-->
             <img src="images/sipnsnuggles_logo.png" id="logo">
 
             <div id="search">
                 <input type="text" class="search_bar" placeholder="Search">
             </div>
 
-            <!-- ALLI TODO: Edit navigation bar elements here! Make sure they support a link to a page -->
             <div>
                 <a href="index.html">
                     <button class="nav_bar">Coffee</button>
@@ -35,7 +34,7 @@
                     <button class="nav_bar">Accessories</button>
                 </a>
             </div>
-            
+
             <div>
                 <a href="index.html">
                     <button class="nav_bar">Cart</button>
@@ -64,6 +63,7 @@
         </div>
     </div>
 
+    <!--the welcome_bar container holds the description of the business-->
     <div id="welcome_bar"> <!--block-->
         <h2>
             Welcome to Sip 'n Snuggles! We are a fully online, non-profit shop selling coffees, teas, and beverage
@@ -80,12 +80,13 @@
         </h2>
     </div>
 
+    <!--this container holds the cat prints that go across the screen as a divider-->
     <div id="cat_prints_container"> <!--block-->
         <hr class="cat_prints">
     </div>
 
-    <!-- ALLI TODO: make this link to the product page?? -->
-    <div id="fproduct"> <!--BLOCK-->
+    <!--this container holds the featured product section-->
+    <div id="fproduct"> <!--block-->
 
         <div class="fprod_text_box">
             <h1 class="fprod">
@@ -93,11 +94,12 @@
             </h1>
         </div>
 
-        <div id="fprod_1"> 
+        <div id="fprod_1">
             <a href="index.html">
-                <img src="https://i.pinimg.com/originals/51/e6/d6/51e6d60a6bcbf0a5a35387da3c858b46.jpg" class="fprod_image">
+                <img src="https://i.pinimg.com/originals/51/e6/d6/51e6d60a6bcbf0a5a35387da3c858b46.jpg"
+                    class="fprod_image">
             </a>
-            
+
             <div class="fprod_label">
                 <h1>
                     Kozy Kitty Mug<br>
@@ -108,18 +110,46 @@
         </div>
     </div>
 
+    <!--this container holds the cat prints that go across the screen as a divider-->
     <div id="cat_prints_container"> <!--block-->
         <hr class="cat_prints">
     </div>
 
+    <!--this container holds the featured product section-->
+    <div id="fproduct"> <!--block-->
+
+        <div class="fprod_text_box">
+            <h1 class="fprod">
+                VALENTINES DAY SALE! 40% OFF
+            </h1>
+        </div>
+
+        <div id="fprod_1">
+            <div class="fprod_label" id="vday">
+                <h1>
+                    <pre>
+     Sweetheart Roast
+                          <del>25.99</del>
+               NOW 15.59!
+                    </pre>
+                </h1>
+            </div>
+
+            <a href="index.html">
+                <img src="images/vdaysale.png"
+                    class="fprod_image" id="vdaysaleimage">
+            </a>
+        </div>
+    </div>
+
 </body>
 
-<footer>
-    <p id="footer">Footer</p>
-
-    <br>
-
-    <p> Copyright © 2024 Sip 'n Snuggles</p>
+<footer><!--this is the footer-->
+    <div id="footer_background">
+        <div id="coffee_bean_footer_accent">
+            <p>Copyright © 2024 Sip 'n Snuggles</p>
+        </div>
+    </div>
 </footer>
 
 </html>
