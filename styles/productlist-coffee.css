@@ -1,0 +1,144 @@
+html, .nav_bar{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    background-color: rgb(193, 138, 99);
+}
+
+body, header #body1_container{
+    margin: 0px;
+    padding: 0px;
+}
+
+header #body1_container{
+    background-color: rgb(207, 182, 114);
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
+    padding:10px;
+}
+
+/* #body2_container{
+    background-image: url('/images/splashimage.png'); 
+    background-size: cover; 
+    background-position: center;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+#logo{
+    width: 25%;
+    height: auto;
+}
+
+.nav_bar{
+    margin-top: 5px;
+    padding: 0 10px;
+    margin-right: 50px;
+    background-color: rgb(207, 182, 114);
+    width: 120px;
+    height: 40px;
+    border: 5px solid rgb(193, 138, 99);
+    color: white;
+    font-size: 14pt;
+    border-radius: 20px;
+}
+
+#search{
+    margin-top: 5px;
+    margin-right: 50px;
+}
+
+input.search_bar{
+    background-color: rgb(207, 182, 114);
+    color: white;
+    border-radius: 20px;
+    border: 5px solid rgb(193, 138, 99);
+    height: 60px;
+}
+
+#search input.search_bar::placeholder{
+    color: white;
+    font-size: 14pt;
+}
+
+#search input.search_bar{
+    height: 30px;
+}
+
+.nav_bar:hover{
+    background-color: saddlebrown;
+    cursor: pointer;
+}
+
+#title-container{
+    text-align: center;
+}
+
+#title{
+    font-size: 50pt;
+
+}
+
+#description{
+    font-size: 18pt;
+}
+
+.cat_prints{
+    height: 90px;
+    border: 0px;
+    background-image: url('/images/cat_prints.png');
+    background-repeat: repeat-x;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.cat_prints_container{
+    background-color: rgb(193, 138, 99);
+    padding:0px;
+    margin: 10px 10px 25px 25px;
+}
+
+#filtering-container{
+    text-align: center;
+    border: 5px solid black;
+}
+
+#product-list-container{
+    border: 5px solid blue;
+}
+
+.products-row{
+    border: 5px solid green;
+    text-align: center;
+}
+
+footer #footer_background{
+    display: flex;
+    align-items: flex-end;
+    background-color: rgb(207, 182, 114);
+    width: 100%;
+    height: 110px;
+}
+
+footer #coffee_bean_footer_accent{
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    background-image: url('/images/coffee-beans.png');
+    background-repeat: repeat-x;
+    width: 100%;
+    height: 100px;
+}
+
+#coffee_bean_footer_accent p{
+    color: white;
+    font-size: medium;
+}
