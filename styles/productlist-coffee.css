@@ -102,11 +102,24 @@ input.search_bar{
 
 #product-list-container{
     border: 5px solid blue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.products-row{
-    border: 5px solid green;
+.products{
+    border: 5px solid black;
+    width: 300px;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
     text-align: center;
+}
+
+.photo{
+    border-radius: 20px;
+    width: 300px;
+    height: 300px;
 }
 
 footer #footer_background{
