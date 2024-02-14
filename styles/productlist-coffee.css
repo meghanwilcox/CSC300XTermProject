@@ -1,4 +1,4 @@
-html, .nav_bar{
+html, .nav_bar, .filtering-buttons{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -69,15 +69,18 @@ input.search_bar{
 
 #title-container{
     text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 #title{
     font-size: 50pt;
-
+    margin-bottom: 25px;
 }
 
 #description{
     font-size: 18pt;
+    margin-bottom: 25px;
 }
 
 .cat_prints{
@@ -85,42 +88,66 @@ input.search_bar{
     border: 0px;
     background-image: url('/images/cat_prints.png');
     background-repeat: repeat-x;
-    margin-top: 0px;
+    margin-top: 15px;
     margin-bottom: 10px;
 }
 
 .cat_prints_container{
     background-color: rgb(193, 138, 99);
     padding:0px;
-    margin: 10px 10px 25px 25px;
+    margin-top: 75px;
+    margin-bottom: 50px;
 }
 
 #filtering-container{
     text-align: center;
-    border: 5px solid black;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 75px;
+}
+
+.filtering-buttons{
+    cursor: pointer;
+    background-color: rgb(193, 138, 99);
+    border: 5px solid rgb(207, 182, 114);
+    border-radius: 20px;
+    height: 50px;
+    font-size: 18pt;
+}
+
+.filtering-buttons:hover{
+    background-color: saddlebrown;
 }
 
 #product-list-container{
-    border: 5px solid blue;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .products{
-    border: 5px solid black;
+    /* border: 5px solid black; */
     width: 300px;
     margin-top: 100px;
     margin-left: 50px;
     margin-right: 50px;
+}
+
+.products p{
     text-align: center;
+    font-size: 18pt;
 }
 
 .photo{
+    border: 5px solid rgb(193, 138, 99);
     border-radius: 20px;
     width: 300px;
     height: 300px;
 }
+
+/* .photo:hover{
+    border: 5px solid saddlebrown;
+} */
 
 footer #footer_background{
     display: flex;
