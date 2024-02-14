@@ -3,31 +3,34 @@
 
 <head>
     <title>Sip 'n Snuggles: Coffee for a Cause</title>
-    <link rel="stylesheet" href="styles/productlist-accessories.css">
+    <link rel="stylesheet" href="styles/productlist.css">
     <meta charset="utf-8">
-
+    <script src="scripting/productlist-accessories-script.js"></script>
 </head>
 
 <body>
     <header>
         <!-- body1_container holds the header/navigation bar thats present on every page-->
         <div id="body1_container"><!--inline-->
-            <img src="images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
+            
+            <a href="index.html">
+                <img src="images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
+            </a>
 
             <div id="search">
                 <input type="text" class="search_bar" placeholder="Search">
             </div>
 
             <div>
-                <button class="nav_bar" onclick="window.location.href='index.html'">Coffee</button>
+                <button class="nav_bar" onclick="window.location.href='productlist-coffee.html'">Coffee</button>
             </div>
 
             <div>
-                <button class="nav_bar" onclick="window.location.href='index.html'">Tea</button>
+                <button class="nav_bar" onclick="window.location.href='productlist-tea.html'">Tea</button>
             </div>
 
             <div>
-                <button class="nav_bar" onclick="window.location.href='index.html'">Accessories</button>
+                <button class="nav_bar" onclick="window.location.href='productlist-accessories.html'">Accessories</button>
             </div>
 
             <div>
@@ -42,10 +45,11 @@
 
     <div id="title-container">
         <div id="title">
-            TITLE
+            Accessories
         </div>
         <div id="description">
-            description
+            We offer variety of coffee beans to our customers! Here you can browse our selection
+            of coffee beans and choose your favorite! Enjoy!
         </div>
     </div>
 
@@ -55,19 +59,12 @@
     </div>
 
     <div id="filtering-container">
-        insert sorting and filtering buttons here
+        <button class="filtering-buttons" id="low-to-high">Filter Price Low to High</button>
+        <button class="filtering-buttons" id="high-to-low">Filter Price High to Low</button>
     </div>
 
     <div id="product-list-container">
-        <div class="products-row">
-            3 products here
-        </div>
-        <div class="products-row">
-            3 products here
-        </div>
-        <div class="products-row">
-            3 products here
-        </div>
+        <!--products are displayed here-->
     </div>
 
     <!--this container holds the cat prints that go across the screen as a divider-->
