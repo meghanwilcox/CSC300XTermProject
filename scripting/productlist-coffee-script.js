@@ -16,19 +16,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateProductsDisplayed() {
         const productsContainer = document.getElementById('product-list-container');
-
+    
         products.forEach((item, index) => {
-
+    
             const productDivElement = document.createElement('div');
-
+    
             productDivElement.classList.add('products');
-
+    
+            // Wrap the image inside an anchor tag with a link to the product page
             productDivElement.innerHTML = `
-            <img class="photo" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
-            <p>${item.name}<br>
-                $${item.cost.toFixed(2)}
-            </p>`;
-
+                <a href="details.html"> 
+                    <img class="photo" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
+                </a>
+                <p>${item.name}<br>
+                    $${item.cost.toFixed(2)}
+                </p>
+                <button class="add-to-cart" onclick="addToCart('${item.name}', ${item.cost})">Add to Cart</button>
+            `;
+    
             productsContainer.appendChild(productDivElement);
         });
     }
