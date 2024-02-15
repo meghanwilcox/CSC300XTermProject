@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // the products to an array
     const products = [
-        { name: "Test Product", cost: 1.00},
-        { name: "Test Product", cost: 6.00},
-        { name: "Test Product", cost: 3.00},
-        { name: "Test Product", cost: 5.00},
-        { name: "Test Product", cost: 4.00},
-        { name: "Test Product", cost: 2.00},
-        { name: "Test Product", cost: 7.00},
-        { name: "Test Product", cost: 9.00},
-        { name: "Test Product", cost: 8.00}
+        { name: "Sweetheart Roast", cost: 15.59},
+        { name: "Classic Light Roast", cost: 25.99},
+        { name: "Classic Medium Roast", cost: 25.99},
+        { name: "Classic Dark Roast", cost: 25.99},
+        { name: "Single Shot of Espresso", cost: 4.00},
+        { name: "Americano", cost: 7.25},
+        { name: "Cortado", cost: 6.50},
+        { name: "Macchiato", cost: 6.99},
+        { name: "Capuccino", cost: 7.25}
     ];
 
     function updateProductsDisplayed() {

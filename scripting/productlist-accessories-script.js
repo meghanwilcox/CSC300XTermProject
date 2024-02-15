@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // the products to an array
     const products = [
-        { name: "Test Product", cost: 1.00},
+        { name: "Kozy Kitty Mug", cost: 11.99},
         { name: "Test Product", cost: 6.00},
         { name: "Test Product", cost: 3.00},
         { name: "Test Product", cost: 5.00},
