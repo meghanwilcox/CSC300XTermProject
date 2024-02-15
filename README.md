@@ -17,3 +17,9 @@ Fixed layout and navigation bar issues
 
 Meghan Wilcox Edit - 02/02/2024
 Edited footer, added section, fixed validator issues.
+
+Meghan Wilcox Edit - 02/13/2024
+Added product list files, added js functionality and styling.
+
+Meghan Wilcox Edit - 02/14/2024
+Added products to product list pages;

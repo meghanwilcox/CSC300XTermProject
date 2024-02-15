@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // the products to an array
     const products = [
-        { name: "Test Product", cost: 1.00},
-        { name: "Test Product", cost: 6.00},
-        { name: "Test Product", cost: 3.00},
-        { name: "Test Product", cost: 5.00},
-        { name: "Test Product", cost: 4.00},
-        { name: "Test Product", cost: 2.00},
-        { name: "Test Product", cost: 7.00},
-        { name: "Test Product", cost: 9.00},
-        { name: "Test Product", cost: 8.00}
+        { name: "Black Tea", cost: 3.00},
+        { name: "Chamomile Tea", cost: 3.25},
+        { name: "Green Tea", cost: 4.00},
+        { name: "Bubble Tea", cost: 7.50},
+        { name: "Jasmine Tea", cost: 4.25},
+        { name: "Hibiscus Tea", cost: 3.00},
+        { name: "Kombucha", cost: 5.25},
+        { name: "Lemongrass Tea", cost: 3.25},
+        { name: "Lavender Tea", cost: 3.00}
     ];
 
     function updateProductsDisplayed() {

@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // the products to an array
     const products = [
-        { name: "Test Product", cost: 1.00},
-        { name: "Test Product", cost: 6.00},
-        { name: "Test Product", cost: 3.00},
-        { name: "Test Product", cost: 5.00},
-        { name: "Test Product", cost: 4.00},
-        { name: "Test Product", cost: 2.00},
-        { name: "Test Product", cost: 7.00},
-        { name: "Test Product", cost: 9.00},
-        { name: "Test Product", cost: 8.00}
+        { name: "Kozy Kitty Mug", cost: 11.99},
+        { name: "Catffeinated Coffee Mug", cost: 13.99},
+        { name: "Ceramic Matching Mug Set", cost: 24.99},
+        { name: "French Press", cost: 15.50},
+        { name: "Cutie Cat Teabag Holder", cost: 4.00},
+        { name: "Meow Meow Teapot", cost: 22.99},
+        { name: "Coffee Grounds Scale", cost: 37.00},
+        { name: "Coffee With Cattitude Mug", cost: 13.99},
+        { name: "Adorable Kitty Mug With Lid & Spoon", cost: 15.99}
     ];
 
     function updateProductsDisplayed() {
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
         productsContainer.innerHTML = "";
         
         products.sort((a, b) => a.cost - b.cost);
-
         updateProductsDisplayed();
 
     }
