@@ -22,4 +22,7 @@ Meghan Wilcox Edit - 02/13/2024
 Added product list files, added js functionality and styling.
 
 Meghan Wilcox Edit - 02/14/2024
-Added products to product list pages;
+Added products to product list pages.
+
+Allison Weavil Edit - 02/15/24
+Added cart page, add to cart buttons, product deatil page, and fixed validator issues.
