@@ -1,4 +1,11 @@
-User
+html, pre, #getCatFactButton, #getCatFactButton:hover, #browse_button, #browse_button:hover, .nav_bar, footer{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    background-color: rgb(193, 138, 99);
+}
+
 body, html {
     height: 100%;
     margin: 0;
@@ -71,6 +78,19 @@ input.search_bar{
     height: 30px;
 }
 
+.nav_bar{
+    margin-top: 5px;
+    padding: 0 10px;
+    margin-right: 50px;
+    background-color: rgb(207, 182, 114);
+    width: 120px;
+    height: 40px;
+    border: 5px solid rgb(193, 138, 99);
+    color: white;
+    font-size: 14pt;
+    border-radius: 20px;
+}
+
 .nav_bar:hover{
     background-color: saddlebrown;
     cursor: pointer;
@@ -91,8 +111,6 @@ input.search_bar{
     display: flex;
     height: 811px;
     width: 100%;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-image-container {
@@ -119,6 +137,7 @@ h2{
     align-items: center; 
     justify-content: center; 
     text-align: center; 
+    color: white;
 }
 
 
@@ -130,22 +149,22 @@ h2{
 
 .product-description {
     font-size: 16px;
-    color: #555;
+    color: white;
     margin-bottom: 15px;
 }
 
 .product-price {
     font-size: 25px;
-    color: #333;
+    color: white;
     margin-bottom: 15px;
 }
 
 .add-to-cart {
     padding: 0 10px;
-    background-color: rgb(207, 182, 114);
+    background-color: rgb(193, 138, 99);
     width: 160px;
     height: 40px;
-    border: 5px solid rgb(193, 138, 99);
+    border: 5px solid rgb(207, 182, 114);
     color: white;
     font-size: 12pt;
     border-radius: 20px;

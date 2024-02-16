@@ -1,8 +1,9 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: saddlebrown;
-   
+html, pre, #getCatFactButton, #getCatFactButton:hover, #browse_button, #browse_button:hover, .nav_bar, .service-btn, .service-btn:hover, .checkout-btn, .checkout-btn:hover{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    background-color: rgb(193, 138, 99);
 }
 
 body, header #body1_container {
@@ -74,16 +75,16 @@ input.search_bar {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #0000;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 5px solid saddlebrown;
 }
 
 h1 {
     text-align: center;
     color: #333;
 }
-
 
 .cart-item {
     display: flex;
@@ -101,6 +102,7 @@ h1 {
     max-height: 150px; 
     width: auto;
     height: auto;
+    border-radius: 20px;
 }
 
 .total {
@@ -113,9 +115,9 @@ h1 {
     margin-top: 20px;
     padding: 10px;
     width: 100%;
-    background-color: rgb(207, 182, 114);
+    background-color: rgb(193, 138, 99);
     color: #fff;
-    border: 5px solid rgb(193, 138, 99);
+    border: 5px solid rgb(207, 182, 114);
     cursor: pointer;
     border-radius: 20px; 
 }
@@ -126,9 +128,9 @@ h1 {
 
 .service-btn {
     padding:  4px 8px;
-    background-color: rgb(207, 182, 114); 
+    background-color: rgb(193, 138, 99); 
     color: white; 
-    border: 3px solid rgb(193, 138, 99);
+    border: 3px solid rgb(207, 182, 114);
     border-radius: 20px; 
     cursor: pointer; 
 }

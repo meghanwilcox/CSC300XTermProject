@@ -1,4 +1,4 @@
-html, .nav_bar, .filtering-buttons{
+html, .nav_bar, .filtering-buttons, .add-to-cart{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -159,22 +159,17 @@ input.search_bar{
     height: 300px;
 }
 
-/* .photo:hover{
-    border: 5px solid saddlebrown;
-} */
-
 .add-to-cart {
     margin-top: 5px;
     padding: 0 10px;
-    background-color: rgb(207, 182, 114);
+    background-color: rgb(193, 138, 99);
     width: 160px;
     height: 40px;
-    border: 5px solid rgb(168, 101, 57);
+    border: 5px solid rgb(207, 182, 114);
     color: white;
     font-size: 12pt;
     border-radius: 20px;
 }
-
 
 .add-to-cart:hover {
     background-color: saddlebrown;

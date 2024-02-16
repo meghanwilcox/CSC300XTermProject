@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>${item.name}<br>
                     $${item.cost.toFixed(2)}
                 </p>
-                <button class="add-to-cart" onclick="addToCart('${item.name}', ${item.cost})">Add to Cart</button>
+                <button class="add-to-cart" onclick="addToCart('${item.name}', ${item.cost})">Add to Cart 🛒</button>
             `;
     
             productsContainer.appendChild(productDivElement);
