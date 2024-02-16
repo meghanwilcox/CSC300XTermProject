@@ -1,9 +1,10 @@
-html, pre, #getCatFactButton, #getCatFactButton:hover, #browse_button, #browse_button:hover, .nav_bar{
+html, pre, #browse_button, #browse_button:hover, .nav_bar, .filtering-buttons, .add-to-cart, .service-btn, .service-btn:hover, .checkout-btn, .checkout-btn:hover, footer{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-body{
+body, .filtering-buttons{
     background-color: rgb(193, 138, 99);
+    color: white;
 }
 
 body, header #body1_container, #body2_container, #splash_image{
@@ -82,6 +83,22 @@ input.search_bar{
     cursor: pointer;
 }
 
+#title-container{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#title{
+    font-size: 50pt;
+    margin-bottom: 25px;
+}
+
+#description{
+    font-size: 18pt;
+    margin-bottom: 25px;
+}
+
 #browse_button{
     background-color: rgb(193, 138, 99);
     width: 250px;
@@ -140,7 +157,139 @@ input.search_bar{
 .cat_prints_container{
     background-color: rgb(193, 138, 99);
     padding:0px;
-    margin: 0px;
+    margin-top: 75px;
+    margin-bottom: 50px;
+}
+
+#filtering-container{
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 75px;
+}
+
+.filtering-buttons{
+    cursor: pointer;
+    background-color: rgb(193, 138, 99);
+    border: 5px solid rgb(207, 182, 114);
+    border-radius: 20px;
+    height: 50px;
+    font-size: 18pt;
+}
+
+.filtering-buttons:hover{
+    background-color: saddlebrown;
+}
+
+#product-list-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.products{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center; 
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+
+.products p{
+    text-align: center;
+    font-size: 18pt;
+}
+
+.photo{
+    border: 5px solid rgb(193, 138, 99);
+    border-radius: 20px;
+    width: 300px;
+    height: 300px;
+}
+
+.add-to-cart {
+    margin-top: 5px;
+    padding: 0 10px;
+    background-color: rgb(193, 138, 99);
+    width: 160px;
+    height: 40px;
+    border: 5px solid rgb(207, 182, 114);
+    color: white;
+    font-size: 12pt;
+    border-radius: 20px;
+}
+
+.add-to-cart:hover, .add-to-cart-product:hover{
+    background-color: saddlebrown;
+    cursor: pointer;
+}
+
+
+.product-detail-container {
+    display: flex;
+    height: 811px;
+    width: 100%;
+}
+
+.product-image-container {
+    flex: 1;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+h2{
+    font-size: 20px;
+}
+
+.product-details {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    color: white;
+}
+
+
+.product-title {
+    font-size: 50px;
+    margin-bottom: 10px;
+    
+}
+
+.product-description {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    font-size: 25px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.add-to-cart-product {
+    padding: 0 10px;
+    background-color: rgb(193, 138, 99);
+    width: 160px;
+    height: 40px;
+    border: 5px solid rgb(207, 182, 114);
+    color: white;
+    font-size: 12pt;
+    border-radius: 20px;
 }
 
 .fproduct{
@@ -193,6 +342,74 @@ input.search_bar{
 #vday pre{
     text-align: right;
     font-size: 25pt;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #0000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 5px solid saddlebrown;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.cart-item div {
+    flex: 1;
+}
+
+.product-image-cart {
+    max-width: 150px; 
+    max-height: 150px; 
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+}
+
+.total {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.checkout-btn {
+    display: block;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    background-color: rgb(193, 138, 99);
+    color: #fff;
+    border: 5px solid rgb(207, 182, 114);
+    cursor: pointer;
+    border-radius: 20px; 
+}
+
+.checkout-btn:hover {
+    background-color: saddlebrown;
+}
+
+.service-btn {
+    padding:  4px 8px;
+    background-color: rgb(193, 138, 99); 
+    color: white; 
+    border: 3px solid rgb(207, 182, 114);
+    border-radius: 20px; 
+    cursor: pointer; 
+}
+
+.service-btn:hover {
+    background-color: saddlebrown;
 }
 
 footer #footer_background{
