@@ -27,3 +27,9 @@ export let products = [
     { name: "Product 26", cost: 9.00, category: "accessories"},
     { name: "Product 27", cost: 8.00, category: "accessories"}
 ];    
+
+
+// Function to update products
+export function updateProducts(updatedProducts) {
+    products = updatedProducts;
+}

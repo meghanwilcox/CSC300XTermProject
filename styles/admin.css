@@ -130,11 +130,19 @@ input.search_bar{
 }
 
 .products{
-    /* border: 5px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 350px;
     margin-top: 100px;
     margin-left: 50px;
     margin-right: 50px;
+}
+
+.products:hover{
+    cursor:pointer;
+    border: 5px solid rgb(207, 182, 114);
+    border-radius: 20px;
 }
 
 .products p{
