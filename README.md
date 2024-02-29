@@ -41,3 +41,6 @@ Finished product edit page. Udpated Bulk Upload page.
 
 Meghan Wilcox Edit - 02/29/24
 Added comments, finished product edit and bulk upload page. 
+
+Allison Weavil Edit - 02/29/24
+Fixed validation errors.
