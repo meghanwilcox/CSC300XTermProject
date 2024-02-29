@@ -45,7 +45,7 @@
     <!-- the hook is the box of text below the nav bar-->
     <div id="hook">
         <div>
-            <h1>List a New product</h1>
+            <h1>List a New Product</h1>
             <div id="new-product-container">
                 <div>
                     <label>Product Name: </label>
@@ -67,7 +67,6 @@
                 </div>
             </div>
             <div id="new-prod-buttons">
-                <button id="edit-close">Close</button>
                 <input type="submit" id="edit-submit" class="submit" value="Submit">
             </div>
 
@@ -86,8 +85,14 @@
             </div>
         </div>
 
-        <div>
-            filter by category buttons will go here
+        <div id="category-filter">
+            <p>Select a Category: </p>
+            <select id="category-filter-select" name="category">
+                <option value="All">All</option>
+                <option value="Coffee">Coffee</option>
+                <option value="Tea">Tea</option>
+                <option value="Accessories">Accessories</option>
+            </select><br>
         </div>
         <div id="product-list-container">
         </div>

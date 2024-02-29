@@ -4,58 +4,31 @@ import { products } from "./index.js";
 document.addEventListener('DOMContentLoaded', function () {
     let isFormOpen = false;
 
-    function updateProductsDisplayed() {
+    function updateProductsDisplayed(filtercategory) {
+        
         const productsContainer = document.getElementById('product-list-container');
 
-        //NEW CODE
         productsContainer.innerHTML = '';
 
         products.forEach((item, index) => {
 
-            const productDivElement = document.createElement('div');
+            if(filtercategory === item.category || filtercategory === "All"){
+                const productDivElement = document.createElement('div');
 
-            productDivElement.classList.add('products');
-
-            productDivElement.innerHTML = `
-            <div id="${index}">
-                <img class="photo" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
-                <p>${item.name}</p>
-
-            </div>`;
-
-            productsContainer.appendChild(productDivElement);
+                productDivElement.classList.add('products');
+    
+                productDivElement.innerHTML = `
+                <div id="${index}">
+                    <img class="photo" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
+                    <p>${item.name}</p>
+    
+                </div>`;
+    
+                productsContainer.appendChild(productDivElement);
+            }
 
         });
     }
-
-    // function handleSubmit(index) {
-    //     return function () {
-    //         // Retrieve the values from the input fields
-    //         const newName = document.getElementById('name').value;
-    //         const newCost = parseFloat(document.getElementById('cost').value);
-
-    //         // Update the corresponding fields in the products array
-    //         products[index].name = newName;
-    //         products[index].cost = newCost;
-
-    //         // Log the updated array (you can remove this in the final version)
-    //         console.log(products[index].name);
-
-    //         // // Remove the form
-    //         // const clickedProductContainer = document.getElementById(index);
-    //         // const clickedProductEditForm = clickedProductContainer.querySelector('form');
-    //         // clickedProductContainer.removeChild(clickedProductEditForm);
-
-    //         // Set the flag back to false when the form is closed
-    //         isFormOpen = false;
-
-    //         // Update the global array in index.js
-    //         // updateProducts(products);
-
-    //         // // NEW CODE
-    //         // updateProductsDisplayed();
-    //     };
-    // }
 
     function handleProductClick(event) {
         const clickedElement = event.target;
@@ -82,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <label>Product ID: ${products[index].productID}</label><br>
                     <label>Product Name: </label>
                     <input type="text" id="name" value="${products[index].name}"><br>
-                    <label>Description: </label>
+                    <label>Description: </label> <br>
                     <textarea id="description" rows="5" cols="30">${products[index].description}</textarea><br>
                     <label>Category: </label>
                     <select id="category" name="category">
@@ -104,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 isFormOpen = true;
 
                 // Add event listener to the Cancel button
-                const cancelButton = document.getElementById('edit-cancel');
+                const cancelButton = document.getElementById('edit-close');
                 cancelButton.addEventListener('click', function removeForm() {
                     clickedProductContainer.removeChild(clickedProductEditForm);
                     cancelButton.removeEventListener('click', removeForm);
@@ -112,10 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Set the flag back to false when the form is closed
                     isFormOpen = false;
                 });
-
-                // // Add event listener to the Submit button
-                // const submitButton = document.getElementById('edit-submit');
-                // submitButton.addEventListener('click', handleSubmit(index));
             }
         }
     }
@@ -124,6 +93,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add click event listener to the document
     document.addEventListener('click', handleProductClick);
 
-    updateProductsDisplayed();
+    // Add event listener to the select element
+    const categoryFilterSelect = document.getElementById('category-filter-select');
+    categoryFilterSelect.addEventListener('change', function () {
+        const selectedCategory = categoryFilterSelect.value;
+        updateProductsDisplayed(selectedCategory);
+    });
+
+    updateProductsDisplayed("All");
 
 });
