@@ -1,4 +1,4 @@
-html, pre, .nav_bar, .btn, #edit-close, .submit, #category-filter-select{
+html, pre, .nav_bar, .btn, #edit-close, .submit, #category-filter-select, #file-upload-container button{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -198,7 +198,7 @@ input.search_bar{
     align-items: center;
 }
 
-#category-filter-select{
+#category-filter-select, #file-upload-container button{
     height: 50px;
     width: 100px;
     background-color: rgb(193, 138, 99);
@@ -208,9 +208,34 @@ input.search_bar{
     font-size: 15pt;
 }
 
-#category-filter-select:hover, option{
+#category-filter-select:hover, option, #file-upload-container button:hover{
     background-color: saddlebrown;
     cursor: pointer;
+}
+
+#file-upload-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#file{
+    background-color: rgb(193, 138, 99);
+    border: 5px solid rgb(207, 182, 114);
+    border-radius: 20px;
+}
+
+#file:hover{
+    cursor: pointer;
+}
+
+#container-bulk{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 15pt;
 }
 
 footer #footer_background{
