@@ -24,10 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
             productDivElement.classList.add('products');
     
             // Wrap the image inside an anchor tag with a link to the product page
-            productDivElement.innerHTML = `
-                <a href="details.html"> 
-                    <img class="photo" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
-                </a>
+            productDivElement.innerHTML = ` 
+                <img class="photo" onclick="window.location.href='details.html'" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
                 <p>${item.name}<br>
                     $${item.cost.toFixed(2)}
                 </p>

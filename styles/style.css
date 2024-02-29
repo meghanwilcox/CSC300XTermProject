@@ -207,8 +207,12 @@ input.search_bar{
 .photo{
     border: 5px solid rgb(193, 138, 99);
     border-radius: 20px;
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
+}
+
+.photo:hover{
+    cursor: pointer;
 }
 
 .add-to-cart {
