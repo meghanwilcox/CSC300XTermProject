@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div id="${index}">
                 <img class="photo" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
                 <p>${item.name}</p>
+
             </div>`;
 
             productsContainer.appendChild(productDivElement);
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Check if the clicked element has the 'photo' class (you can adjust this based on your HTML structure)
         if (clickedElement.classList.contains('photo')) {
+
             // Retrieve the index from the data-index attribute
             const index = clickedElement.getAttribute('data-index');
 
@@ -77,12 +79,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 clickedProductEditForm.innerHTML = `
                 <form>
+                    <label>Product ID: ${products[index].productID}</label><br>
                     <label>Product Name: </label>
                     <input type="text" id="name" value="${products[index].name}"><br>
-
-                    <label>Product Price: </label>
+                    <label>Description: </label>
+                    <textarea id="description" rows="5" cols="30">${products[index].description}</textarea><br>
+                    <label>Category: </label>
+                    <select id="category" name="category">
+                        <option value="Coffee" ${products[index].category === 'Coffee' ? 'selected' : ''}>Coffee</option>
+                        <option value="Tea" ${products[index].category === 'Tea' ? 'selected' : ''}>Tea</option>
+                        <option value="Accessories" ${products[index].category === 'Accessories' ? 'selected' : ''}>Accessories</option>
+                    </select><br>
+                    <label>Price: </label>
                     <input type="text" id="cost" value="${products[index].cost.toFixed(2)}"><br>
-                    <button id="edit-cancel">Close</button>
+                    <label>Image Path: ${"images/" + products[index].name + ".jpg"}</label><br>
+                    <input type="file" id="path" accept="image/*"><br>
+                    <button id="edit-close">Close</button>
                     <input type="submit" id="edit-submit" class="submit" value="Submit">
                 </form>`;
 

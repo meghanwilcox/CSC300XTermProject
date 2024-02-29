@@ -156,7 +156,10 @@ input.search_bar{
     width: 300px;
     height: 300px;
 }
-
+.clicked_element{
+    border: 5px solid rgb(207, 182, 114);
+    border-radius: 20px;
+}
 footer #footer_background{
     display: flex;
     align-items: flex-end;

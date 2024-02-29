@@ -1,38 +1,30 @@
+// import the products array
+import { products } from "./index.js";
+
 //this function will be called as soon as the page is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // the products to an array
-    const products = [
-        { name: "Sweetheart Roast", cost: 15.59},
-        { name: "Classic Light Roast", cost: 25.99},
-        { name: "Classic Medium Roast", cost: 25.99},
-        { name: "Classic Dark Roast", cost: 25.99},
-        { name: "Single Shot of Espresso", cost: 4.00},
-        { name: "Americano", cost: 7.25},
-        { name: "Cortado", cost: 6.50},
-        { name: "Macchiato", cost: 6.99},
-        { name: "Capuccino", cost: 7.25}
-    ];
 
     function updateProductsDisplayed() {
         const productsContainer = document.getElementById('product-list-container');
     
         products.forEach((item, index) => {
+
+            if(item.category === "Coffee"){
+                const productDivElement = document.createElement('div');
     
-            const productDivElement = document.createElement('div');
-    
-            productDivElement.classList.add('products');
-    
-            // Wrap the image inside an anchor tag with a link to the product page
-            productDivElement.innerHTML = `
-            <img class="photo" onclick="window.location.href='details.html'" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
-                <p>${item.name}<br>
-                    $${item.cost.toFixed(2)}
-                </p>
-                <button class="add-to-cart" onclick="addToCart('${item.name}', ${item.cost})">Add to Cart 🛒 </button>
-            `;
-    
-            productsContainer.appendChild(productDivElement);
+                productDivElement.classList.add('products');
+        
+                // Wrap the image inside an anchor tag with a link to the product page
+                productDivElement.innerHTML = `
+                <img class="photo" onclick="window.location.href='details.html'" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
+                    <p>${item.name}<br>
+                        $${item.cost.toFixed(2)}
+                    </p>
+                    <button class="add-to-cart" onclick="addToCart('${item.name}', ${item.cost})">Add to Cart 🛒 </button>
+                `;
+        
+                productsContainer.appendChild(productDivElement);
+            }
         });
     }
 
