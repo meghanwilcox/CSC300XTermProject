@@ -44,8 +44,9 @@
 
     <!-- the hook is the box of text below the nav bar-->
     <div id="hook">
+        <!-- this container contains the info for the bulk upload section -->
         <div id="container-bulk">
-            <h1>Bulk Upload</h1>
+            <h1>Bulk Product Upload</h1>
             <form>
                 <div id="file-upload-container">
                     <h2>Select a JSON file: </h2>
@@ -56,18 +57,18 @@
                 <pre>
                     [
                         {
-                            "productID": 1,
                             "name": "Product 1",
                             "description": "Description 1",
                             "category": "Category 1",
-                            "cost": 10.99
+                            "cost": 10.99,
+                            "path":  /example/imagepath1.jpg
                         },
                         {
-                            "productID": 2,
                             "name": "Product 2",
                             "description": "Description 2",
                             "category": "Category 2",
-                            "cost": 19.99
+                            "cost": 19.99,
+                            "path": /example/imagepath2.jpg
                         },
                         // ... more products
                     ]

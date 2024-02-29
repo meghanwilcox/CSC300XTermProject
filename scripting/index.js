@@ -1,3 +1,4 @@
+// this is the global array of products on the website
 export let products = [
     { productID: 100, name: "Sweetheart Roast", cost: 15.59, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
     { productID: 101, name: "Classic Light Roast", cost: 25.99, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
