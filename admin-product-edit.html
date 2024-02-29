@@ -13,7 +13,7 @@
     <header>
         <!-- body1_container holds the header/navigation bar thats present on every page-->
         <div id="body1_container"><!--inline-->
-            
+
             <a href="admin.html">
                 <img src="images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
             </a>
@@ -23,7 +23,8 @@
             </div>
 
             <div>
-                <button class="nav_bar" onclick="window.location.href='admin-bulk-upload.html'">Bulk Product Upload</button>
+                <button class="nav_bar" onclick="window.location.href='admin-bulk-upload.html'">Bulk Product
+                    Upload</button>
             </div>
 
             <div>
@@ -42,13 +43,49 @@
     </div>
 
     <!-- the hook is the box of text below the nav bar-->
-    <div id="hook"> 
+    <div id="hook">
+        <div>
+            <h1>List a New product</h1>
+            <div id="new-product-container">
+                <div>
+                    <label>Product Name: </label>
+                    <input type="text" id="name"><br>
+                    <label>Price: </label>
+                    <input type="text" id="cost"><br>
+                    <label>Image:</label>
+                    <input type="file" id="path" accept="image/*"><br>
+                    <label>Category: </label>
+                    <select id="category" name="category">
+                        <option value="Coffee">Coffee</option>
+                        <option value="Tea">Tea</option>
+                        <option value="Accessories">Accessories</option>
+                    </select><br>
+                </div>
+                <div>
+                    <label>Description: </label>
+                    <textarea id="description" rows="5" cols="30"></textarea><br>
+                </div>
+            </div>
+            <div id="new-prod-buttons">
+                <button id="edit-close">Close</button>
+                <input type="submit" id="edit-submit" class="submit" value="Submit">
+            </div>
+
+
+        </div>
+
+        <!--this container holds the cat prints that go across the screen as a divider-->
+        <div class="cat_prints_container"> <!--block-->
+            <hr class="cat_prints">
+        </div>
+
         <div id="search-edit">
-            <h1>Select a product to edit product details, or search for a product:</h1>
+            <h1>Select a product below to edit the product details:</h1>
             <div id="search">
                 <input type="text" class="search_bar" placeholder="Search">
             </div>
         </div>
+
         <div>
             filter by category buttons will go here
         </div>
@@ -57,7 +94,7 @@
     </div>
 
     <!--this container holds the cat prints that go across the screen as a divider-->
-    <div class="cat_prints_container"> 
+    <div class="cat_prints_container">
         <hr class="cat_prints">
     </div>
 
