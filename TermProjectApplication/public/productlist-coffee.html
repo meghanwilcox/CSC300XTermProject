@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sip 'n Snuggles: Coffee for a Cause</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <meta charset="utf-8">
+    <script type="module" src="scripting/productlist-coffee-script.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- body1_container holds the header/navigation bar thats present on every page-->
+        <div id="body1_container"><!--inline-->
+            
+            <a href="index.html">
+                <img src="images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
+            </a>
+
+            <div id="search">
+                <input type="text" class="search_bar" placeholder="Search">
+            </div>
+
+            <div>
+                <button class="nav_bar" onclick="window.location.href='productlist-coffee.html'" style="background-color: saddlebrown;">Coffee</button>
+            </div>
+
+            <div>
+                <button class="nav_bar" onclick="window.location.href='productlist-tea.html'">Tea</button>
+            </div>
+
+            <div>
+                <button class="nav_bar" onclick="window.location.href='productlist-accessories.html'">Accessories</button>
+            </div>
+
+            <div>
+                <button class="nav_bar" onclick="window.location.href='cart.html'">Cart 🛒</button>
+            </div>
+
+            <div>
+                <button class="nav_bar" onclick="window.location.href='index.html'">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <div id="title-container">
+        <div id="title">
+            ☕ Coffee ☕
+        </div>
+        <div id="description">
+            We offer variety of coffee beans to our customers! Here you can browse our selection
+            of coffee beans and choose your favorite! Enjoy!
+        </div>
+    </div>
+
+    <!--this container holds the cat prints that go across the screen as a divider-->
+    <div class="cat_prints_container"> <!--block-->
+        <hr class="cat_prints">
+    </div>
+
+    <div id="filtering-container">
+        <button class="filtering-buttons" id="low-to-high">Filter Price Low to High</button>
+        <button class="filtering-buttons" id="high-to-low">Filter Price High to Low</button>
+    </div>
+
+    <div id="product-list-container">
+        <!--products are displayed here-->
+    </div>
+
+    <!--this container holds the cat prints that go across the screen as a divider-->
+    <div class="cat_prints_container"> <!--block-->
+        <hr class="cat_prints">
+    </div>
+
+    <footer><!--this is the footer-->
+        <div id="footer_background">
+            <div id="coffee_bean_footer_accent">
+                <p>Copyright © 2024 Sip 'n Snuggles</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
