@@ -72,6 +72,30 @@ class ProductController {
             throw new Error('Failed to get product details' + error.message);
         }
     }
+
+    async addProductToCart(data) {
+        try {
+            // Check if the user already has a cart
+            let cartID = await this.db.get('SELECT cartID FROM Carts WHERE userID = ?', [data.userID]);
+    
+            if (!cartID) {
+                // If the user does not have a cart, create a new one and retrieve the cartID
+                await this.db.run('INSERT INTO Carts (userID, status, createdDate) VALUES (?, ?, ?)', [data.userID, 'new', new Date().toLocaleDateString('en-CA')]);
+                // Retrieve the cartID of the newly created cart
+                const result = await this.db.get('SELECT cartID FROM Carts WHERE userID = ?', [data.userID]);
+                cartID = result.cartID;
+            }
+    
+            // Add the product to the user's cart
+            const result = await this.db.run('INSERT INTO CartProducts (userID, cartID, productID, quantity) VALUES (?, ?, ?, ?)', [data.userID, cartID, data.productID, data.quantity]);
+    
+            console.log('Product added to cart successfully!');
+            return { id: result.lastID, cartID, ...data };
+        } catch (error) {
+            console.error('Error adding product to cart: ', error);
+            throw new Error('Failed to add product to cart: ' + error.message);
+        }
+    }
     
 
 }

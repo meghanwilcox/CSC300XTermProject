@@ -107,6 +107,18 @@ async function getDBConnection() {
         }
     });
 
+    // Define the route for add a product to a user's cart
+    app.post('/product/add-product-to-cart', async (req, res) => {
+        try {
+            const data = req.body;
+            const cartProduct = await productController.addProductToCart(data);
+            res.json(cartProduct);
+        } catch (error) {
+            console.error('Error adding product to cart:', error);
+            res.status(500).json({ error: 'Failed to add product to cart' });
+        }
+    });
+
 
 
 })();
