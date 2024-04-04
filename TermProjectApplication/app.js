@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 
 // Import the UserAuthController
 const UserAuthController = require('./controllers/user_auth_controller');
+const ProductController = require('./controllers/product_controller');
 
 //getDBConnection: a function to establish a connection with the database
 async function getDBConnection() {
@@ -65,6 +66,51 @@ async function getDBConnection() {
     });
 
 })();
+
+//initialize the UserDataController with the database connection
+(async () => {
+    const db = await getDBConnection();
+    const productController = new ProductController(db);
+
+    // Define a route to retrieve the list of featured products
+    app.get('/product/get-featured-products', async (req, res) => {
+        try {
+            const featuredProducts = await productController.getFeaturedProducts();
+            res.json(featuredProducts); 
+        } catch (error) {
+            console.error('Error retrieving featured products:', error);
+            res.status(500).json({ error: 'Failed to retrieve featured products' });
+        }
+    });
+
+        // Define a route to retrieve the list of products in a specific category
+    app.get('/product/get-products-by-category', async (req, res) => {
+        try {
+            const productData = req.body;
+            const products = await productController.getProductsByCategory(productData);
+            res.json(products); 
+        } catch (error) {
+            console.error('Error retrieving products:', error);
+            res.status(500).json({ error: 'Failed to retrieve products' });
+        }
+    });
+
+    //define a route to retreive a product for a specific productID
+    app.get('/product/get-product', async (req, res) => {
+        try {
+            const productData = req.body;
+            const product = await productController.getProductDetails(productData);
+            res.status(200).json(product);
+        } catch (error) {
+            console.error('Error retreiving product', error);
+            res.status(500).json({error: 'Failed to retreive product'})
+        }
+    });
+
+
+
+})();
+
 
 // Root endpoint
 app.get('/', function(req, res) {
