@@ -1,4 +1,4 @@
-html, pre, #browse_button, #browse_button:hover, .nav_bar, .filtering-buttons, .add-to-cart, .service-btn, .service-btn:hover, .checkout-btn, .checkout-btn:hover, footer{
+html, pre, #browse_button, #browse_button:hover, .nav_bar, .filtering-buttons, .add-to-cart, .service-btn, .service-btn:hover, .checkout-btn, .checkout-btn:hover, .login-btn, .login-btn:hover, footer{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -403,7 +403,7 @@ h1 {
     background-color: saddlebrown;
 }
 
-.service-btn {
+.service-btn, .login-btn{
     padding:  4px 8px;
     background-color: rgb(193, 138, 99); 
     color: white; 
@@ -412,7 +412,7 @@ h1 {
     cursor: pointer; 
 }
 
-.service-btn:hover {
+.service-btn:hover, .login-btn:hover {
     background-color: saddlebrown;
 }
 
@@ -438,3 +438,19 @@ footer #coffee_bean_footer_accent{
     color: white;
     font-size: medium;
 }
+
+#login-logo{
+    width: 600px;
+}
+
+#login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18pt;
+}
+
+.login-btn{
+    font-size: 14pt;
+}
+
