@@ -8,10 +8,12 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const authRoutes = require('./routes/userAuthRoutes');
-const productRoutes = require('./routes/productDataRoutes');
+const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 
 app.use('/auth', authRoutes);
 app.use('/product', productRoutes);
+app.use('/cart', cartRoutes);
 
 // Start the server
 app.listen(3000, function() {
