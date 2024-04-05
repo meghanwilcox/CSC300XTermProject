@@ -119,17 +119,30 @@ async function getDBConnection() {
         }
     });
 
+    //example call to the search endpoint for keyword "Earl"
+    //http://localhost:3000/product/search?keywords=Earl
+
+    // Define a route to search for products by keywords
+    app.get('/product/search', async (req, res) => {
+        try {
+            const { keywords } = req.query;
+
+            if (!keywords) {
+                return res.status(400).json({ error: 'Keywords are required for search' });
+            }
+
+            const products = await productController.searchProducts(keywords);
+            res.json(products);
+        } catch (error) {
+            console.error('Error searching for products:', error);
+            res.status(500).json({ error: 'Failed to search for products' });
+        }
+    });
 
 
 })();
 
-
-// Root endpoint
-app.get('/', function(req, res) {
-    res.send('Hello World!');
-});
-
 // Start the server
 app.listen(3000, function() {
-    console.log('Example app listening on port 3000!');
+    console.log('SipNSnuggles Server listening on port 3000!');
 });

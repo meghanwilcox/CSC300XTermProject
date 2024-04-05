@@ -52,5 +52,22 @@ router.post('product/add-product-to-cart', async (req, res) => {
     }
 });
 
+// Define a route to search for products by keywords
+router.get('product/search', async (req, res) => {
+    try {
+        const { keywords } = req.query;
+
+        if (!keywords) {
+            return res.status(400).json({ error: 'Keywords are required for search' });
+        }
+
+        const products = await productController.searchProducts(keywords);
+        res.json(products);
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        res.status(500).json({ error: 'Failed to search for products' });
+    }
+});
+
 
 module.exports = router;

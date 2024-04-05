@@ -4,6 +4,7 @@ class ProductController {
         this.db = db;
     }
 
+    //this function retreives a list of featured products
     async getFeaturedProducts() {
         try {
             console.log('Attempting to get featured products!');
@@ -27,6 +28,7 @@ class ProductController {
         }
     }
 
+    //this function retreives a list of all the products in a specific category
     async getProductsByCategory(productData) {
         try {
             console.log('Attempting to fetch products in category: ', productData.category);
@@ -50,6 +52,7 @@ class ProductController {
         }
     }
 
+    //this function fetches all of the information about a product from the database
     async getProductDetails(productData) {
         try{
             console.log('Attempting to get product details for product id: ', productData.productID);
@@ -73,6 +76,7 @@ class ProductController {
         }
     }
 
+    //this function adds a product to a cart. It creates a new cart for a user if they don't already have one, and adds the product to thier cart
     async addProductToCart(data) {
         try {
             // Check if the user already has a cart
@@ -94,6 +98,26 @@ class ProductController {
         } catch (error) {
             console.error('Error adding product to cart: ', error);
             throw new Error('Failed to add product to cart: ' + error.message);
+        }
+    }
+
+    //this function searches for and returns all the products that have a name or description that matches the keywords
+    async searchProducts(keywords) {
+        try {
+            // Construct the SQL query to search for products based on keywords
+            const query = `
+                SELECT * 
+                FROM Products 
+                WHERE name LIKE ? OR description LIKE ?
+            `;
+
+            // Execute the SQL query against the database
+            const products = await this.db.all(query, [`%${keywords}%`, `%${keywords}%`]);
+
+            return products;
+        } catch (error) {
+            console.error('Error searching for products:', error);
+            throw new Error('Failed to search for products');
         }
     }
     
