@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 
 // Import the UserAuthController
 const UserAuthController = require('./controllers/user_auth_controller');
+const ProductController = require('./controllers/product_controller');
 
 //getDBConnection: a function to establish a connection with the database
 async function getDBConnection() {
@@ -66,12 +67,82 @@ async function getDBConnection() {
 
 })();
 
-// Root endpoint
-app.get('/', function(req, res) {
-    res.send('Hello World!');
-});
+//initialize the UserDataController with the database connection
+(async () => {
+    const db = await getDBConnection();
+    const productController = new ProductController(db);
+
+    // Define a route to retrieve the list of featured products
+    app.get('/product/get-featured-products', async (req, res) => {
+        try {
+            const featuredProducts = await productController.getFeaturedProducts();
+            res.json(featuredProducts); 
+        } catch (error) {
+            console.error('Error retrieving featured products:', error);
+            res.status(500).json({ error: 'Failed to retrieve featured products' });
+        }
+    });
+
+        // Define a route to retrieve the list of products in a specific category
+    app.get('/product/get-products-by-category', async (req, res) => {
+        try {
+            const productData = req.body;
+            const products = await productController.getProductsByCategory(productData);
+            res.json(products); 
+        } catch (error) {
+            console.error('Error retrieving products:', error);
+            res.status(500).json({ error: 'Failed to retrieve products' });
+        }
+    });
+
+    //define a route to retreive a product for a specific productID
+    app.get('/product/get-product', async (req, res) => {
+        try {
+            const productData = req.body;
+            const product = await productController.getProductDetails(productData);
+            res.status(200).json(product);
+        } catch (error) {
+            console.error('Error retreiving product', error);
+            res.status(500).json({error: 'Failed to retreive product'})
+        }
+    });
+
+    // Define the route for add a product to a user's cart
+    app.post('/product/add-product-to-cart', async (req, res) => {
+        try {
+            const data = req.body;
+            const cartProduct = await productController.addProductToCart(data);
+            res.json(cartProduct);
+        } catch (error) {
+            console.error('Error adding product to cart:', error);
+            res.status(500).json({ error: 'Failed to add product to cart' });
+        }
+    });
+
+    //example call to the search endpoint for keyword "Earl"
+    //http://localhost:3000/product/search?keywords=Earl
+
+    // Define a route to search for products by keywords
+    app.get('/product/search', async (req, res) => {
+        try {
+            const { keywords } = req.query;
+
+            if (!keywords) {
+                return res.status(400).json({ error: 'Keywords are required for search' });
+            }
+
+            const products = await productController.searchProducts(keywords);
+            res.json(products);
+        } catch (error) {
+            console.error('Error searching for products:', error);
+            res.status(500).json({ error: 'Failed to search for products' });
+        }
+    });
+
+
+})();
 
 // Start the server
 app.listen(3000, function() {
-    console.log('Example app listening on port 3000!');
+    console.log('SipNSnuggles Server listening on port 3000!');
 });
