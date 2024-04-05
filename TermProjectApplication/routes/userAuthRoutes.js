@@ -59,6 +59,18 @@ async function getDBConnection() {
         }
     });
 
+    // Define a route to abandon a users cart when they log out if a cart of their exists
+    router.put('/abandon-cart', async (req, res) => {
+        try {
+            const cartData = req.body;
+            const result = await userAuthController.abandonCart(cartData);
+            res.status(200).json({ message: 'Cart abandoned successfully!', affectedRows: result });
+        } catch (error) {
+            console.error('Error abandoning cart:', error);
+            res.status(500).json({ error: 'Failed to abandoning cart' });
+        }
+    });
+
 })();
 
 module.exports = router;

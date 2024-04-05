@@ -79,6 +79,37 @@ class UserAuthController {
         }
     }
 
+    //this function sets the status of a users cart to abandoned if they have a cart
+    async abandonCart(cartData) {
+        try {
+            console.log('Attempting to abandon cart:', cartData.userID, cartData.cartID);
+    
+            // Update the approval status of the item in the database
+            const result = await this.db.run(`
+                UPDATE Carts 
+                SET status = 'abandoned' 
+                WHERE userID = ? 
+                AND cartID = ? 
+                AND EXISTS (
+                    SELECT 1 
+                    FROM Carts 
+                    WHERE userID = ? 
+                    AND cartID = ?
+                );`,
+                [cartData.userID, cartData.cartID]
+            );
+    
+            console.log('Cart abandoned successfully:', result);
+    
+            return result.changes;
+            
+        } catch (error) {
+            console.error('Error purchasing cart:', error);
+            throw new Error('Failed to purchase cart: ' + error.message);
+        }
+    }
+
+
 }
 
 module.exports = UserAuthController;
