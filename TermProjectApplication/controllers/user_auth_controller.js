@@ -28,7 +28,7 @@ class UserAuthController {
     //this function logs a new user into the site with thier username and password
     async loginUser(userData) {
         try {
-            console.log('Attempting to login user:', userData.userName);
+            console.log('Attempting to login user:', userData.email);
             
             // Query the database to check if the user exists and the password matches
             const user = await this.db.get(
@@ -55,18 +55,24 @@ class UserAuthController {
 
             //query the db to see if user is an admin
             const user = await this.db.get(
-                'SELECT * FROM Users WHERE email = ? AND password = ?',
-                [userData.email, userData.password]
+                'SELECT * FROM Users WHERE email = ?',
+                [userData.email]
             );
 
-            // Check if user exists and isAdmin is set to true (assuming 1 represents true for isAdmin)
-            if (user.userType === "admin") {
-                console.log("User is an admin:", user.email);
-                return true;
+            if(user) {
+                // Check if user exists and isAdmin is set to true (assuming 1 represents true for isAdmin)
+                if (user.userType === "admin") {
+                    console.log("User is an admin:", user.email);
+                    return true;
+                } else {
+                    console.log("User is not an admin:", user.email);
+                    return false;
+                }
             } else {
-                console.log("User is not an admin:", user.email);
+                console.log("User not found");
                 return false;
             }
+            
         } catch (error) {
             console.error('Error checking if user is an admin: ', error);
             throw new Error('Failed to check if user is admin: ' + error.message);
