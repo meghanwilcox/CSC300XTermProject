@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +13,13 @@
 
 
 </head>
+
 <body>
 
     <header>
         <!-- body1_container holds the header/navigation bar thats present on every page-->
         <div id="body1_container"><!--inline-->
-            
+
             <a href="index.html">
                 <img src="images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
             </a>
@@ -35,11 +37,13 @@
             </div>
 
             <div>
-                <button class="nav_bar" onclick="window.location.href='productlist-accessories.html'">Accessories</button>
+                <button class="nav_bar"
+                    onclick="window.location.href='productlist-accessories.html'">Accessories</button>
             </div>
 
             <div>
-                <button class="nav_bar" onclick="window.location.href='cart.html'" style="background-color: saddlebrown;">Cart 🛒</button>
+                <button class="nav_bar" onclick="window.location.href='cart.html'"
+                    style="background-color: saddlebrown;">Cart 🛒</button>
             </div>
 
             <div>
@@ -62,8 +66,11 @@
             </div>
             <div class="quantity">
                 <input type="number" value="1" min="1" class="quantity-input">
-                <button class="service-btn" onclick="updateQuantity(1)">Update</button>
-                <button class="service-btn" onclick="removeFromCart(1)">Remove</button>
+                <input type="number" id="quantity-input" value="1">
+                <button
+                    onclick="editCartProductQuantity(userId, cartId, productId, document.getElementById('quantity-input').value)">Update
+                </button>
+                <button onclick="removeFromCart(userId, cartId, productId)">Remove from Cart</button>
             </div>
             <div class="total">$6.50</div>
         </div>
@@ -79,8 +86,10 @@
             </div>
             <div class="quantity">
                 <input type="number" value="2" min="1" class="quantity-input">
-                <button class='service-btn' onclick="updateQuantity(2)">Update</button>
-                <button class='service-btn' onclick="removeFromCart(2)">Remove</button>
+                <button
+                    onclick="editCartProductQuantity(userId, cartId, productId, document.getElementById('quantity-input').value)">Update
+                </button>
+                <button onclick="removeFromCart(userId, cartId, productId)">Remove from Cart</button>
             </div>
             <div class="total">$6.00</div>
         </div>
@@ -100,13 +109,14 @@
     </div>
 
 
-        <footer><!--this is the footer-->
-            <div id="footer_background">
-                <div id="coffee_bean_footer_accent">
-                    <p>Copyright © 2024 Sip 'n Snuggles</p>
-                </div>
+    <footer><!--this is the footer-->
+        <div id="footer_background">
+            <div id="coffee_bean_footer_accent">
+                <p>Copyright © 2024 Sip 'n Snuggles</p>
             </div>
-        </footer>
+        </div>
+    </footer>
 
 </body>
+
 </html>
