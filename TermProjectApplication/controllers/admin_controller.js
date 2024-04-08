@@ -30,7 +30,7 @@ class AdminController {
 
     async editProductDetails(productData) {
         try {
-            console.log('Attempting to edit product details for product:', productData.userID, productData.productID);
+            console.log('Attempting to edit product details for product:', productData.productID);
 
             // Update the approval status of the item in the database
             const result = await this.db.run(
