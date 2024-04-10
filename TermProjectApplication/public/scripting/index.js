@@ -1,30 +1,96 @@
-// this is the global array of products on the website
-export let products = [
-    { productID: 100, name: "Sweetheart Roast", cost: 15.59, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
-    { productID: 101, name: "Classic Light Roast", cost: 25.99, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
-    { productID: 102, name: "Classic Medium Roast", cost: 25.99, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
-    { productID: 103, name: "Classic Dark Roast", cost: 25.99, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
-    { productID: 104, name: "Single Shot of Espresso", cost: 4.00, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
-    { productID: 105, name: "Americano", cost: 7.25, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
-    { productID: 106, name: "Cortado", cost: 6.50, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
-    { productID: 107, name: "Macchiato", cost: 6.99, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
-    { productID: 108, name: "Capuccino", cost: 7.25, category: "Coffee", description: "This is a product description.", path: "this is an image path"},
-    { productID: 109, name: "Black Tea", cost: 3.00, category: "Tea", description: "This is a product description.", path: "this is an image path"},
-    { productID: 110, name: "Chamomile Tea", cost: 3.25, category: "Tea", description: "This is a product description.", path: "this is an image path"},
-    { productID: 111, name: "Green Tea", cost: 4.00, category: "Tea", description: "This is a product description.", path: "this is an image path"},
-    { productID: 112, name: "Bubble Tea", cost: 7.50, category: "Tea", description: "This is a product description.", path: "this is an image path"},
-    { productID: 113, name: "Jasmine Tea", cost: 4.25, category: "Tea", description: "This is a product description.", path: "this is an image path"},
-    { productID: 114, name: "Hibiscus Tea", cost: 3.00, category: "Tea", description: "This is a product description.", path: "this is an image path"},
-    { productID: 115, name: "Kombucha", cost: 5.25, category: "Tea", description: "This is a product description.", path: "this is an image path"},
-    { productID: 116, name: "Lemongrass Tea", cost: 3.25, category: "Tea", description: "This is a product description.", path: "this is an image path"},
-    { productID: 117, name: "Lavender Tea", cost: 3.00, category: "Tea", description: "This is a product description.", path: "this is an image path"},
-    { productID: 118, name: "Kozy Kitty Mug", cost: 11.99, category: "Accessories", description: "This is a product description.", path: "this is an image path"},
-    { productID: 119, name: "Catffeinated Coffee Mug", cost: 13.99, category: "Accessories", description: "This is a product description.", path: "this is an image path"},
-    { productID: 120, name: "Ceramic Matching Mug Set", cost: 24.99, category: "Accessories", description: "This is a product description.", path: "this is an image path"},
-    { productID: 121, name: "French Press", cost: 15.50, category: "Accessories", description: "This is a product description.", path: "this is an image path"},
-    { productID: 122, name: "Cutie Cat Teabag Holder", cost: 4.00, category: "Accessories", description: "This is a product description.", path: "this is an image path"},
-    { productID: 123, name: "Meow Meow Teapot", cost: 22.99, category: "Accessories", description: "This is a product description.", path: "this is an image path"},
-    { productID: 124, name: "Coffee Grounds Scale", cost: 37.00, category: "Accessories", description: "This is a product description.", path: "this is an image path"},
-    { productID: 125 ,name: "Coffee With Cattitude Mug", cost: 13.99, category: "Accessories", description: "This is a product description.", path: "this is an image path"},
-    { productID: 126, name: "Adorable Kitty Mug With Lid & Spoon", cost: 15.99, category: "Accessories", description: "This is a product description.", path: "this is an image path"}    
-];
+// document.addEventListener('DOMContentLoaded', async () => {
+//     try {
+//         const response = await fetch('http://localhost:3000/product/get-featured-products', {
+//             method: 'GET'
+//         });
+
+//         if (response.ok) {
+//             const featuredProducts = await response.json();
+//             alert("Success!");
+//             formatFeaturedProducts(featuredProducts);
+//         } else {
+//             console.error('Error retrieving featured products:', response.statusText);
+//         }
+//     } catch (error) {
+//         console.error('Error retrieving featured products:', error);
+//     }
+// });
+
+// function formatFeaturedProducts(featuredProducts) {
+//     const featuredProductsContainer = document.getElementById('fproduct-container');
+//     featuredProductsContainer.innerHTML = ''; // Clear previous content
+
+//     featuredProducts.forEach(product => {
+//         const productDiv = document.createElement('div');
+//         productDiv.classList.add('featured-product');
+
+//         const productName = document.createElement('h2');
+//         productName.textContent = product.name;
+
+//         //add this in later when we make the data in the database accurate
+//         // const productImage = document.createElement('img');
+//         // productImage.src = product.imageURL;
+//         // productImage.alt = product.name;
+
+//         const productPrice = document.createElement('p');
+//         productPrice.textContent = '$' + product.price.toFixed(2);
+
+//         productDiv.appendChild(productName);
+//         //productDiv.appendChild(productImage);
+//         productDiv.appendChild(productPrice);
+
+//         featuredProductsContainer.appendChild(productDiv);
+//     });
+// }
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('http://localhost:3000/product/get-featured-products', {
+            method: 'GET'
+        });
+
+        if (response.ok) {
+            const featuredProducts = await response.json();
+            formatFeaturedProducts(featuredProducts);
+        } else {
+            console.error('Error retrieving featured products:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error retrieving featured products:', error);
+    }
+});
+
+function formatFeaturedProducts(featuredProducts) {
+    const featuredProductsContainer = document.getElementById('fproduct-container');
+    featuredProductsContainer.innerHTML = ''; // Clear previous content
+
+    featuredProducts.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('featured-product');
+        productDiv.addEventListener('click', () => {
+            redirectToProductDetails(product.productID);
+        });
+
+        const productName = document.createElement('h2');
+        productName.textContent = product.name;
+
+        //add this in later when we make the data in the database accurate
+        // const productImage = document.createElement('img');
+        // productImage.src = product.imageURL;
+        // productImage.alt = product.name;
+
+        const productPrice = document.createElement('p');
+        productPrice.textContent = '$' + product.price.toFixed(2);
+
+
+        productDiv.appendChild(productName);
+        //productDiv.appendChild(productImage);
+        productDiv.appendChild(productPrice);
+
+        featuredProductsContainer.appendChild(productDiv);
+    });
+}
+
+function redirectToProductDetails(productID) {
+    // Redirect to details.html page with productID as URL parameter
+    window.location.href = `details.html?productID=${productID}`;
+}

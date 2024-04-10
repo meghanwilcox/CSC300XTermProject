@@ -71,6 +71,18 @@ async function getDBConnection() {
         }
     });
 
+    //define a route to retreive a product for a specific productID
+    router.get('/get-userID', async (req, res) => {
+        try {
+            const userData = req.body;
+            const userID = await userAuthController.getUserID(userData);
+            res.status(200).json(userID);
+        } catch (error) {
+            console.error('Error retreiving userID', error);
+            res.status(500).json({error: 'Failed to retreive userID'})
+        }
+    });
+
 })();
 
 module.exports = router;

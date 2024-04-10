@@ -43,17 +43,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         const isAdminData = await isAdminResponse.json();
                         console.log('isAdmin', isAdminData);
 
-                        if(isAdminData === true){
-                            alert('User is an admin!');
-                            window.location.href = 'admin.html';
-                        } else {
-                            alert('User is a shopper!');
-                            window.location.href = 'index.html';
+                        userData2 = {
+                            email: email.value
+                        };
+
+                        try {
+                            const response = await fetch('http://localhost:3000/auth/get-userID', {
+                                method: 'GET',
+                                body: JSON.stringify(userData2)
+                            });
+                            
+                            if (response.ok) {
+                                
+                                const userID = await response.json(); // Extract the JSON data
+                                alert('User id =' + userID);
+                                // if (isAdminData === true) {
+                                //     alert('User is an admin!');
+                                //     window.location.href = `admin.html?userID=${userID}`;
+                                // } else {
+                                //     alert('User is a shopper!');
+                                //     window.location.href = `index.html?userID=${userID}`;
+                                // }
+                            } else {
+                                console.error('Error getting userID:', response.statusText);
+                                alert('An error occurred getting the userID');
+                            }
+                        } catch (error) {
+                            console.error('Error getting userID:', error);
+                            alert('An error occurred getting the userID');
                         }
-                        
-                    } else { 
-                        console.error('Error checking if user is an admin:', error);
-                        alert('An error occurred while checking if a user is an admin');
                     }
 
                 } catch (error) {

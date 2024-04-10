@@ -108,6 +108,29 @@ class UserAuthController {
             throw new Error('Failed to purchase cart: ' + error.message);
         }
     }
+    //this function fetches all of the information about a product from the database
+    async getUserID(userData) {
+        try{
+            console.log('Attempting to get userID for email: ', userData.email);
+
+            const userID = await this.db.get(
+                'SELECT userID FROM USers WHERE email = ?',
+                [userData.email]
+            );
+
+            if(!userID){
+                console.log('No userID found for email: ', userData.email);
+                return;
+            }
+
+            console.log('UserID retreived successfully!');
+            return userID;
+            
+        } catch(error) {
+            console.error('Error getting userID: '. error);
+            throw new Error('Failed to get userID' + error.message);
+        }
+    }
 
 
 }

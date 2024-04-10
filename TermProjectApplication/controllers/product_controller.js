@@ -11,7 +11,7 @@ class ProductController {
 
             //get the featured products from the database
             const featuredProducts = await this.db.all(
-                'SELECT * FROM Products WHERE isFeatured = 1;'
+                'SELECT productID, name, imageURL, price FROM Products WHERE isFeatured = 1;'
             );
 
             if (!featuredProducts || featuredProducts.length === 0) {

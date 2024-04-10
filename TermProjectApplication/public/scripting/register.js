@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 alert('User registered successfully!');
                 // Redirect to some page after successful registration if needed
-                window.location.href = 'index.html';
+                window.location.href = 'login.html';
             } else {
                 const errorMessage = await response.text();
                 alert(`Failed to register user: ${errorMessage}`);
