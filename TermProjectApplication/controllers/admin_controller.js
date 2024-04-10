@@ -30,40 +30,25 @@ class AdminController {
 
     async editProductDetails(productData) {
         try {
+
+            if(!productData.productID){
+                console.log('No product ID found');
+                return;
+            }
             console.log('Attempting to edit product details for product:', productData.productID);
 
             // Update the approval status of the item in the database
             const result = await this.db.run(
-                'UPDATE Products SET name = ?, description = ?, imageURL = ?, price = ?, quantity = ?, category = ?, is_Featured = ? WHERE productID = ?', 
-                [productData.name, productData.description, productData.imageURL, productData.price, productData.quantity, productData.category, productData.is_Featured, productData.productId]
+                'UPDATE Products SET name = ?, description = ?, imageURL = ?, price = ?, quantity = ?, category = ?, is_Featured = ? WHERE productID = ?;', 
+                [productData.name, productData.description, productData.imageURL, productData.price, productData.quantity, productData.category, productData.is_Featured, productData.productID]
             );
 
-            console.log('Product data successfully edited:', result);
-            return result.changes; // Return the number of affected rows
+            console.log('Product data successfully edited:');
+            return "Afffected rows: " + result.changes; // Return the number of affected rows
         } catch (error) {
             console.error('Error editing cart product quantity:', error);
             throw new Error('Failed to edit product: ' + error.message);
         }
-        // try {
-        //     // Ensure productId and newData are provided
-        //     if (!productData) {
-        //         throw new Error('Invalid request. Please provide both productData.');
-        //     }
-
-        //     // // Establish connection with the database
-        //     // const db = await getDBConnection();
-
-        //     // Update the product attributes in the database
-        //     const result = await this.db.run('UPDATE Products SET name = ?, description = ?, imageURL = ?, price = ?, quantity = ?, category = ?, is_Featured = ? WHERE productID = ?', [productData.name, productData.description, productData.imageURL, productData.price, productData.quantity, productData.category, productData.is_Featured, productData.productId]);
-
-        //     // // Close the database connection
-        //     // await db.close();
-
-        //     return { success: true, message: 'Product attributes updated successfully.' };
-        // } catch (error) {
-        //     console.error('Error editing cart product quantity:', error);
-        //     throw new Error('Failed to cart product quantity: ' + error.message);
-        // }
     }
 
 }
