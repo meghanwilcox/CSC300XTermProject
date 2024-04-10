@@ -43,27 +43,26 @@ document.addEventListener('DOMContentLoaded', () => {
                         const isAdminData = await isAdminResponse.json();
                         console.log('isAdmin', isAdminData);
 
-                        userData2 = {
-                            email: email.value
-                        };
-
                         try {
-                            const response = await fetch('http://localhost:3000/auth/get-userID', {
-                                method: 'GET',
-                                body: JSON.stringify(userData2)
+                            const userIDresponse = await fetch('http://localhost:3000/auth/get-userID', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({email: userData.email})
                             });
                             
-                            if (response.ok) {
+                            if (userIDresponse.ok) {
                                 
-                                const userID = await response.json(); // Extract the JSON data
+                                const { userID } = await userIDresponse.json(); // Extract the JSON data
                                 alert('User id =' + userID);
-                                // if (isAdminData === true) {
-                                //     alert('User is an admin!');
-                                //     window.location.href = `admin.html?userID=${userID}`;
-                                // } else {
-                                //     alert('User is a shopper!');
-                                //     window.location.href = `index.html?userID=${userID}`;
-                                // }
+                                if (isAdminData === true) {
+                                    alert('User is an admin!');
+                                    window.location.href = `admin.html?userID=${userID}`;
+                                } else {
+                                    alert('User is a shopper!');
+                                    window.location.href = `index.html?userID=${userID}`;
+                                }
                             } else {
                                 console.error('Error getting userID:', response.statusText);
                                 alert('An error occurred getting the userID');
