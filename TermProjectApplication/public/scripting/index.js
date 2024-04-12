@@ -31,16 +31,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
     
+    function redirectToProductList(userID, page) {
+        // Redirect to details.html page with productID as URL parameter
+        window.location.href = `productlist-${page}.html?userID=${userID}`;
+    }
+
+
     function redirectToProductDetails(productID) {
         // Redirect to details.html page with productID as URL parameter
         window.location.href = `details.html?productID=${productID}`;
     }
-    
+
     function extractUserIDFromURL() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        return urlParams.get('userID');
+        const userID = urlParams.get('userID');
+        return userID;
     }
+    
+    // Example usage:
+    const userID = extractUserIDFromURL();
+    console.log(userID); // Output: 1
     
     try {
         const response = await fetch('http://localhost:3000/product/get-featured-products', {
@@ -57,34 +68,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error retrieving featured products:', error);
     }
     
-    const logoutButton = document.getElementById('logout-button');
-    logoutButton.addEventListener('click', async () => {
-        try {
-            // Call the logout API endpoint
-            const response = await fetch('http://localhost:3000/auth/abandon-cart', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    userID: extractUserIDFromURL() // Assuming you have extracted userID already
-                })
-            });
+    // const logoutButton = document.getElementById('logout-button');
+    // logoutButton.addEventListener('click', async () => {
+    //     try {
+    //         // Call the logout API endpoint
+    //         const response = await fetch('http://localhost:3000/auth/abandon-cart', {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 userID: extractUserIDFromURL() // Assuming you have extracted userID already
+    //             })
+    //         });
 
-            if (response.ok) {
-                alert('Logout successful');
-                // Redirect the user to the login page or any other page as needed
-                window.location.href = 'login.html';
-            } else {
-                console.error('Error logging out:', response.statusText);
-                alert('An error occurred while logging out');
-            }
-        } catch (error) {
-            console.error('Error logging out:', error);
-            alert('An error occurred while logging out');
-        }
-    });
-    
+    //         if (response.ok) {
+    //             alert('Logout successful');
+    //             // Redirect the user to the login page or any other page as needed
+    //             window.location.href = 'login.html';
+    //         } else {
+    //             console.error('Error logging out:', response.statusText);
+    //             alert('An error occurred while logging out');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error logging out:', error);
+    //         alert('An error occurred while logging out');
+    //     }
+    // });
+
+const coffeeButton = document.getElementById('coffee-redirect-button');
+const teaButton = document.getElementById('tea-redirect-button');
+const accessoriesButton = document.getElementById('accessories-redirect-button');
+//const cartButton = document.getElementById('cart-redirect-button');
+
+coffeeButton.addEventListener('click', async () => {
+    console.log('Coffee button clicked');
+    redirectToProductList(userID, "coffee");
+});
+
+teaButton.addEventListener('click', async () => {
+    console.log('Tea button clicked');
+    redirectToProductList(userID, "tea");
+});
+
+accessoriesButton.addEventListener('click', async () => {
+    console.log('Accessories button clicked');
+    redirectToProductList(userID, "accessories");
+});
     
 });
 
