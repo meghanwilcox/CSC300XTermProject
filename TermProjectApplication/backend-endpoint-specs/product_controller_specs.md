@@ -50,7 +50,7 @@ Product Endpoints
        ...
      ]
 
-3. GET /product/get-product
+3. POST /product/get-product
    - Description: Retrieves details of a specific product.
    - Example Call: GET /get-product
    - JSON Body: { "productID": 123 }

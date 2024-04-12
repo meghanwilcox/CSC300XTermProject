@@ -45,7 +45,7 @@ async function getDBConnection() {
     });
 
     //define a route to retreive a product for a specific productID
-    router.get('/get-product', async (req, res) => {
+    router.post('/get-product', async (req, res) => {
         try {
             const productData = req.body;
             const product = await productController.getProductDetails(productData);
