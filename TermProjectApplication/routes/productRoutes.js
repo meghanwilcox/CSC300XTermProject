@@ -33,7 +33,7 @@ async function getDBConnection() {
     });
 
     // Define a route to retrieve the list of products from a specfified category
-    router.get('/get-products-by-category', async (req, res) => {
+    router.post('/get-products-by-category', async (req, res) => {
         try {
             const productData = req.body;
             const products = await productController.getProductsByCategory(productData);
