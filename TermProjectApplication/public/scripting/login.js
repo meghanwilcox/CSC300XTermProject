@@ -1,3 +1,5 @@
+// import { setCurrentUser } from './users-module.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve the data from the input form
     const loginForm = document.getElementById('login-form');
@@ -53,8 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             });
                             
                             if (userIDresponse.ok) {
-                                
                                 const { userID } = await userIDresponse.json(); // Extract the JSON data
+
+                                // const globalUserData = {
+                                //     userID: userID
+                                // };
+                                
+                                // setCurrentUser(globalUserData);
+
                                 alert('User id =' + userID);
                                 if (isAdminData === true) {
                                     alert('User is an admin!');
@@ -87,4 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('An error occurred while logging in. Please try again later.');
         }
     });    
+
+
 });
