@@ -40,6 +40,12 @@ async function getDBConnection() {
             // Call the appropriate method from UserAuthController to validate the user login
             const user = await userAuthController.loginUser(userData);
             // Return the user data or appropriate response based on validation result
+            if (req.session) {
+                console.log("session!!!!!");
+                // req.session.currentUser=user;
+                // console.log(req.session.currentUser.email);
+            }
+
             res.json(user);
         } catch (error) {
             console.error('Error logging in user:', error);

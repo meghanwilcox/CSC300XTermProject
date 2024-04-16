@@ -1,6 +1,3 @@
-// import the products array
-import { products } from "./index.js";
-
 //this function will be called as soon as the page is loaded
 document.addEventListener('DOMContentLoaded', function () {
     let isFormOpen = false;
