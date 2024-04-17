@@ -24,10 +24,12 @@ app.use(bodyParser.json());
 const authRoutes = require('./routes/userAuthRoutes');
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 app.use('/auth', authRoutes);
 app.use('/product', productRoutes);
 app.use('/cart', cartRoutes);
+app.use('/admin', adminRoutes);
 
 app.get('/login', async (req, res) => {
     res.redirect('http://127.0.0.1:3000/public/login.html');
