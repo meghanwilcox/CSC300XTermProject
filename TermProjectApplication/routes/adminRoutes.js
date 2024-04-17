@@ -9,8 +9,8 @@ const AdminController = require('../controllers/admin_controller');
 //getDBConnection: a function to establish a connection with the database
 async function getDBConnection() {
     const db = await sqlite.open({
-    filename: 'data/SipNSnugglesDB.db',
-    driver: sqlite3.Database
+        filename: 'data/SipNSnugglesDB.db',
+        driver: sqlite3.Database
     });
     return db;
 }
@@ -65,7 +65,39 @@ async function getDBConnection() {
         }
     });
 
+// ###################################################################################################################################################
+
 })();
+// Define a route to search for products by keywords
+router.get('/search', async (req, res) => {
+    try {
+        const { keywords } = req.query;
+
+        if (!keywords) {
+            return res.status(400).json({ error: 'Keywords are required for search' });
+        }
+
+        const products = await adminController.searchProducts(keywords);
+
+        res.json(products);
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        res.status(500).json({ error: 'Failed to search for products' });
+    }
+});
+
+//Define a route to retreive the list of all items
+router.get('/get-all-products', async (req, res) => {
+    try {
+        const products = await adminController.getAllProducts();
+        res.status(200).json(products);
+    } catch(error) {
+        console.error('Error retreiving all products: ', error);
+        res.status(500).json({error: 'Failed to retreive all products'});
+    }
+});
+
+
 
 module.exports = router;
 

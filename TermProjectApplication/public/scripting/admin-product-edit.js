@@ -103,3 +103,31 @@ document.addEventListener('DOMContentLoaded', function () {
     updateProductsDisplayed("All");
 
 });
+
+async function getAllProducts() {
+    try {
+        const response = await fetch('http://localhost:3000/admin/get-all-products');
+        if (!response.ok) {
+            throw new Error('Failed to retrieve products');
+        }
+        const products = await response.json();
+        console.log('Products retrieved successfully:', products);
+        displayProducts(products); // Call a function to display the items
+    } catch (error) {
+        console.error('Error retrieving products:', error.message);
+        // Display an error message or handle the error
+    }
+}
+
+function displayProducts(products) {
+    const productListElement = document.getElementById('item-list');
+    productListElement.innerHTML = ''; // Clear existing items
+    products.forEach(products => {
+        const productElement = document.createElement('div');
+        productElement.textContent = `${products.name} - ${products.cost}`; 
+        productListElement.appendChild(productElement);
+    });
+}
+
+// Usage
+getAllProducts();
