@@ -57,19 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (userIDresponse.ok) {
                                 const { userID } = await userIDresponse.json(); // Extract the JSON data
 
-                                // const globalUserData = {
-                                //     userID: userID
-                                // };
-                                
-                                // setCurrentUser(globalUserData);
-
                                 alert('User id =' + userID);
                                 if (isAdminData === true) {
                                     alert('User is an admin!');
-                                    window.location.href = `admin.html?userID=${userID}`;
+                                    window.location.href = `admin.html`;
                                 } else {
                                     alert('User is a shopper!');
-                                    window.location.href = `index.html?userID=${userID}`;
+                                    window.location.href = `index.html`;
                                 }
                             } else {
                                 console.error('Error getting userID:', response.statusText);

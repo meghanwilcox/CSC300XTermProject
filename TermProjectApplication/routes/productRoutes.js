@@ -59,9 +59,25 @@ async function getDBConnection() {
     //defines a route to register a new user
     router.post('/add-product-to-cart', async (req, res) => {
         try {
-            const data = req.body;
-            const cartProduct = await productController.addProductToCart(data);
-            res.status(201).json(cartProduct);
+            const { productID, quantity } = req.body;
+
+            if(req.session && req.session.currentUser){
+                const userID = req.session.currentUser;
+                console.log(userID.userID);
+            }
+            else{
+                console.log('no current user');
+            }
+            
+            // const data = {
+            //     userID: userID,
+            //     productID: productID,
+            //     quantity: quantity
+            // };
+
+            // const cartProduct = await productController.addProductToCart(data);
+
+            // res.status(201).json(cartProduct);
         } catch (error) {
             console.error('Error adding product to cart: ', error);
             res.status(500).json({ error: 'Failed to add product to cart' });

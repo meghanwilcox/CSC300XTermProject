@@ -42,8 +42,8 @@ async function getDBConnection() {
             // Return the user data or appropriate response based on validation result
             if (req.session) {
                 console.log("session!!!!!");
-                // req.session.currentUser=user;
-                // console.log(req.session.currentUser.email);
+                req.session.currentUser=user;
+                console.log(req.session.currentUser);
             }
 
             res.json(user);
@@ -52,6 +52,7 @@ async function getDBConnection() {
             res.status(500).json({ error: 'Failed to log in user' });
         }
     });
+
 
     //define the route for checking if a user is an admin
     router.post('/isAdmin', async (req, res) => {

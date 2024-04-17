@@ -7,11 +7,12 @@ const app = express();
 const passport = require('passport');
 const session = require('express-session');
 
+// Session middleware
 app.use(session({
-    secret: 'secret_key',
-    resave: false,
-    saveUninitialized: true
-  }));
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());

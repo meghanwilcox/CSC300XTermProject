@@ -6,65 +6,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         productID = urlParams.get('productID');
         return productID;
     }
-    
-    //redirectToProductList: this function redirects the user to the appropriate productlistings page
-    function redirectToProductList(userID, page) {
-        // Redirect to details.html page with productID as URL parameter
-        window.location.href = `productlist-${page}.html?userID=${userID}`;
+
+    async function addProductToCart(productID, quantity){
+        try {
+            const data = {
+                productID: productID,
+                quantity: quantity
+            };
+
+            const response = await fetch('http://localhost:3000/auth/add-product-to-cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+        
+            if (response.ok) {
+                const cartProduct = await response.json();
+                console.log(cartProduct);
+                alert('Product added to cart successfully!');
+            } else {
+                console.error('Error retrieving products accessories:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error retrieving products accessories:', error);
+        }
     }
-
-    //redirectToHomePage: this function redirects the user back to the home page with the appropriate userID
-    function redirectToHomePage(userID) {
-        // Redirect to details.html page with productID as URL parameter
-        window.location.href = `index.html?userID=${userID}`;
-    }
-
-    //extractUSerIDFromURL: this function extracts the userID from the URL
-    function extractUserIDFromURL() {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const userID = urlParams.get('userID');
-        return userID;
-    }
-
-    //retreive the current user's userID from the URL
-    const userID = extractUserIDFromURL();
-
-    //retreive the categories buttons from the html pages
-    const logo = document.getElementById('logo');
-    const coffeeButton = document.getElementById('coffee-redirect-button');
-    const teaButton = document.getElementById('tea-redirect-button');
-    const accessoriesButton = document.getElementById('accessories-redirect-button');
-    //const cartButton = document.getElementById('cart-redirect-button');
-
-    logo.addEventListener('click', async () => {
-        console.log('Logo button clicked');
-        redirectToHomePage(userID);
-    });
-
-    //attach an event listener to the buttons to redirect the user to the coffee product list page when clicked
-    coffeeButton.addEventListener('click', async () => {
-        console.log('Coffee button clicked');
-        redirectToProductList(userID, "coffee");
-    });
-
-    //attach an event listener to the buttons to redirect the user to the coffee product list page when clicked
-    teaButton.addEventListener('click', async () => {
-        console.log('Tea button clicked');
-        redirectToProductList(userID, "tea");
-    });
-
-    //attach an event listener to the buttons to redirect the user to the coffee product list page when clicked
-    accessoriesButton.addEventListener('click', async () => {
-        console.log('Accessories button clicked');
-        redirectToProductList(userID, "accessories");
-    });
 
     function formatProductDetails(product) {
-        //const productContainer = document.getElementById('prod-details-container-main');
-        //productContainer.innerHTML = ''; // Clear previous content
-        
-        //const productImageContainer = document.getElementById('product-image-container-main')
         const productDetailsContainer = document.getElementById('product-details-container-text');
     
         const productName = document.createElement('h2');
@@ -94,6 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             const addToCartButton = document.createElement('button');
             addToCartButton.textContent = 'Add to Cart';
+            addToCartButton.setAttribute('id', 'add-to-cart');
             productDetailsContainer.appendChild(addToCartButton);
         }
    
@@ -118,6 +89,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error retrieving product', error);
     }
 
+    const addtocartBTN = document.getElementById('add-to-cart');
+
+    addtocartBTN.addEventListener('click', () => {
+        console.log('add to cart');
+        addProductToCart(extractProductIDFromURL(), 1);
+    });
     
     // const logoutButton = document.getElementById('logout-button');
     // logoutButton.addEventListener('click', async () => {
