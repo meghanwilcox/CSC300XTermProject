@@ -104,7 +104,7 @@ input.search_bar{
 .cat_prints{
     height: 90px;
     border: 0px;
-    background-image: url('/images/cat_prints.png');
+    background-image: url('/TermProjectApplication/public/images/cat_prints.png');
     background-repeat: repeat-x;
     margin-top: 0px;
     margin-bottom: 10px;
@@ -250,7 +250,7 @@ footer #coffee_bean_footer_accent{
     display:flex;
     justify-content: center;
     text-align: center;
-    background-image: url('/images/coffee-beans.png');
+    background-image: url('/TermProjectApplication/public/images/coffee-beans.png');
     background-repeat: repeat-x;
     width: 100%;
     height: 100px;

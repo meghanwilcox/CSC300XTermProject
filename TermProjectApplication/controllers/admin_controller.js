@@ -15,12 +15,12 @@ class AdminController {
             // Iterate over each product and insert into the database
             for (const product of productData) {
                 const { userID, name, description, imageURL, price, quantity, category, is_Featured } = product;
-    
+
                 // Insert data into the database
                 await this.db.run('INSERT INTO Products (userID, name, description, imageURL, price, quantity, category, is_Featured) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [userID, name, description, imageURL, price, quantity, category, is_Featured]);
             }
 
-    
+
             return { success: true, message: 'Bulk product upload successful.' };
         } catch (error) {
             console.error('Error uploading products:', error);
@@ -31,7 +31,7 @@ class AdminController {
     async editProductDetails(productData) {
         try {
 
-            if(!productData.productID){
+            if (!productData.productID) {
                 console.log('No product ID found');
                 return;
             }
@@ -39,7 +39,7 @@ class AdminController {
 
             // Update the approval status of the item in the database
             const result = await this.db.run(
-                'UPDATE Products SET name = ?, description = ?, imageURL = ?, price = ?, quantity = ?, category = ?, is_Featured = ? WHERE productID = ?;', 
+                'UPDATE Products SET name = ?, description = ?, imageURL = ?, price = ?, quantity = ?, category = ?, is_Featured = ? WHERE productID = ?;',
                 [productData.name, productData.description, productData.imageURL, productData.price, productData.quantity, productData.category, productData.is_Featured, productData.productID]
             );
 
@@ -55,20 +55,70 @@ class AdminController {
     async createItemListing(itemData) {
         try {
             console.log('Attempting to create new listing:', itemData);
-    
+
             // Insert a new item record into the database
             const result = await this.db.run(
-                'INSERT INTO Products (userID, name, description, imageURL, price, quaantity, category, isFeatured) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                'INSERT INTO Products (userID, name, description, imageURL, price, quantity, category, isFeatured) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
                 [itemData.userID, itemData.name, itemData.description, itemData.imageURL, itemData.price, itemData.quantity, itemData.category, itemData.isFeatured]
             );
-    
+
             console.log('New item created successfully:', result);
-    
+
             // Return the newly registered user data
             return { id: result.lastID, ...itemData };
-        } catch(error) {
+        } catch (error) {
             console.error('Error creating new listing.');
             throw new Error('Failed to create new listing:' + error.message);
+        }
+    }
+
+// ################################################################################################################################################################
+
+    //this function searches for and returns all the products that have a name or description that matches the keywords
+    async searchProducts(keywords) {
+        try {
+
+            console.log(`Attempting to search for products with keywords: ${keywords}`);
+            // Construct the SQL query to search for products based on keywords
+            const query = `
+                SELECT * 
+                FROM Products 
+                WHERE name LIKE ? OR description LIKE ?
+            `;
+
+            // Execute the SQL query against the database
+            const products = await this.db.all(query, [`%${keywords}%`, `%${keywords}%`]);
+
+            console.log('Products found successfully!', products);
+            return products;
+        } catch (error) {
+            console.error('Error searching for products:', error);
+            throw new Error('Failed to search for products');
+        }
+    }
+
+    //this function retrieves all the items frm the database
+    async getAllProducts() {
+        try {
+            console.log('Attempting to get all items!');
+
+             //get the items from the database
+             const products = await this.db.all(
+                'SELECT * FROM Products;'
+             );
+
+             if(!products|| products.length === 0) {
+                console.log('No items found.');
+                return [];
+             }
+
+             console.log('Products retreived successfully: ', products);
+             return products;
+
+
+        } catch(error) {
+            console.error('Error retrieving all products');
+            throw new Error('Failed to get all products');
         }
     }
 
