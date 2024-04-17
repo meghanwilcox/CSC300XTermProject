@@ -296,15 +296,10 @@ h2{
     border-radius: 20px;
 }
 
-.fproduct{
+#fproduct-container{
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    width: 100%;
-    margin: 0 auto;
-    max-width: 1550px;
-    padding:10px;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
  .fprod_text_box{
@@ -454,3 +449,17 @@ footer #coffee_bean_footer_accent{
     font-size: 14pt;
 }
 
+.featured-product{
+    border: 5px solid  rgb(207, 182, 114);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.featured-product:hover{
+    cursor: pointer;
+    border: 5px solid saddlebrown;
+}
+
+#product-3{
+    border: 5px solid black;
+}

@@ -1,3 +1,5 @@
+// import { setCurrentUser } from './users-module.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve the data from the input form
     const loginForm = document.getElementById('login-form');
@@ -43,17 +45,34 @@ document.addEventListener('DOMContentLoaded', () => {
                         const isAdminData = await isAdminResponse.json();
                         console.log('isAdmin', isAdminData);
 
-                        if(isAdminData === true){
-                            alert('User is an admin!');
-                            window.location.href = 'admin.html';
-                        } else {
-                            alert('User is a shopper!');
-                            window.location.href = 'index.html';
+                        try {
+                            const userIDresponse = await fetch('http://localhost:3000/auth/get-userID', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({email: userData.email})
+                            });
+                            
+                            if (userIDresponse.ok) {
+                                const { userID } = await userIDresponse.json(); // Extract the JSON data
+
+                                alert('User id =' + userID);
+                                if (isAdminData === true) {
+                                    alert('User is an admin!');
+                                    window.location.href = `admin.html`;
+                                } else {
+                                    alert('User is a shopper!');
+                                    window.location.href = `index.html`;
+                                }
+                            } else {
+                                console.error('Error getting userID:', response.statusText);
+                                alert('An error occurred getting the userID');
+                            }
+                        } catch (error) {
+                            console.error('Error getting userID:', error);
+                            alert('An error occurred getting the userID');
                         }
-                        
-                    } else { 
-                        console.error('Error checking if user is an admin:', error);
-                        alert('An error occurred while checking if a user is an admin');
                     }
 
                 } catch (error) {
@@ -70,4 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('An error occurred while logging in. Please try again later.');
         }
     });    
+
+
 });

@@ -33,7 +33,7 @@ async function getDBConnection() {
     });
 
     // Define a route to retrieve the list of products from a specfified category
-    router.get('/get-products-by-category', async (req, res) => {
+    router.post('/get-products-by-category', async (req, res) => {
         try {
             const productData = req.body;
             const products = await productController.getProductsByCategory(productData);
@@ -45,7 +45,7 @@ async function getDBConnection() {
     });
 
     //define a route to retreive a product for a specific productID
-    router.get('/get-product', async (req, res) => {
+    router.post('/get-product', async (req, res) => {
         try {
             const productData = req.body;
             const product = await productController.getProductDetails(productData);
@@ -56,11 +56,27 @@ async function getDBConnection() {
         }
     });
 
-    //defines a route to register a new user
+    //defines a route to add a product to a cart
     router.post('/add-product-to-cart', async (req, res) => {
         try {
-            const data = req.body;
+            const { productID, quantity } = req.body;
+
+            if(req.session && req.session.currentUser){
+                const userID = req.session.currentUser;
+                console.log(userID.userID);
+            }
+            else{
+                console.log('no current user');
+            }
+            
+            const data = {
+                userID: userID,
+                productID: productID,
+                quantity: quantity
+            };
+
             const cartProduct = await productController.addProductToCart(data);
+
             res.status(201).json(cartProduct);
         } catch (error) {
             console.error('Error adding product to cart: ', error);
@@ -78,6 +94,7 @@ async function getDBConnection() {
             }
 
             const products = await productController.searchProducts(keywords);
+            
             res.json(products);
         } catch (error) {
             console.error('Error searching for products:', error);

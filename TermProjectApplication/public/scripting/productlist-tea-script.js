@@ -1,60 +1,88 @@
-// import the products array
-import { products } from "./index.js";
+document.addEventListener('DOMContentLoaded', async () => {
 
-//this function will be called as soon as the page is loaded
-document.addEventListener('DOMContentLoaded', function() {
-
-    function updateProductsDisplayed() {
+    function redirectToProductDetails(productID) {
+        // Redirect to details.html page with productID as URL parameter
+        window.location.href = `details.html?productID=${productID}`;
+    }
+    
+    function formatProducts(products) {
         const productsContainer = document.getElementById('product-list-container');
+        productsContainer.innerHTML = ''; // Clear previous content
     
-        products.forEach((item, index) => {
-
-            if(item.category === "Tea"){
-                const productDivElement = document.createElement('div');
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('listed-product');
+            productDiv.setAttribute('id', `product-${product.productID}`); // Add ID based on product ID
+            productDiv.addEventListener('click', () => {
+                redirectToProductDetails(product.productID);
+            });
     
-                productDivElement.classList.add('products');
-        
-                // Wrap the image inside an anchor tag with a link to the product page
-                productDivElement.innerHTML = `
-                <img class="photo" onclick="window.location.href='details.html'" data-index="${index}" src="images/${item.name.toLowerCase()}.jpg" alt="">
-                    <p>${item.name}<br>
-                        $${item.cost.toFixed(2)}
-                    </p>
-                    <button class="add-to-cart" onclick="addToCart('${item.name}', ${item.cost})">Add to Cart 🛒</button>
-                `;
-        
-                productsContainer.appendChild(productDivElement);
-            }
+            const productName = document.createElement('h2');
+            productName.textContent = product.name;
+    
+            //add this in later when we make the data in the database accurate
+            // const productImage = document.createElement('img');
+            // productImage.src = product.imageURL;
+            // productImage.alt = product.name;
+    
+            const productPrice = document.createElement('p');
+            productPrice.textContent = '$' + product.price.toFixed(2);
+    
+            productDiv.appendChild(productName);
+            //productDiv.appendChild(productImage);
+            productDiv.appendChild(productPrice);
+    
+            productsContainer.appendChild(productDiv);
         });
     }
 
-    function sortProductsLowToHigh() {
-        const productsContainer = document.getElementById('product-list-container');
-
-        productsContainer.innerHTML = "";
-        
-        products.sort((a, b) => a.cost - b.cost);
-
-        updateProductsDisplayed();
-
+    try {
+        const category = "Tea"; // Set the category you want to retrieve products for
+        const response = await fetch('http://localhost:3000/product/get-products-by-category', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ category: category })
+        });
+    
+        if (response.ok) {
+            const products = await response.json();
+            formatProducts(products);
+        } else {
+            console.error('Error retrieving products tea:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error retrieving products tea:', error);
     }
+    
+    // const logoutButton = document.getElementById('logout-button');
+    // logoutButton.addEventListener('click', async () => {
+    //     try {
+    //         // Call the logout API endpoint
+    //         const response = await fetch('http://localhost:3000/auth/abandon-cart', {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 userID: extractUserIDFromURL() // Assuming you have extracted userID already
+    //             })
+    //         });
 
-    function sortProductsHighToLow() {
-        const productsContainer = document.getElementById('product-list-container');
-
-        productsContainer.innerHTML = "";
-
-        products.sort((a, b) => b.cost - a.cost);
-
-        updateProductsDisplayed();
-    }
-
-    updateProductsDisplayed();
-
-    const lowToHighButton = document.getElementById('low-to-high');
-    lowToHighButton.addEventListener('click', sortProductsLowToHigh);
-
-    const highToLowButton = document.getElementById('high-to-low');
-    highToLowButton.addEventListener('click', sortProductsHighToLow);
-
+    //         if (response.ok) {
+    //             alert('Logout successful');
+    //             // Redirect the user to the login page or any other page as needed
+    //             window.location.href = 'login.html';
+    //         } else {
+    //             console.error('Error logging out:', response.statusText);
+    //             alert('An error occurred while logging out');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error logging out:', error);
+    //         alert('An error occurred while logging out');
+    //     }
+    // });
+    
+    
 });

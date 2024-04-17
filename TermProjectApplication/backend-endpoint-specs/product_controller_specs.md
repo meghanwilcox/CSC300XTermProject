@@ -12,6 +12,7 @@ Product Endpoints
          "productID": 1,
          "name": "Product A",
          "description": "Description of Product A",
+         "imageURL": "./images/testimage.png",
          "price": 10.99,
          "quantity": 100,
          "category": "Tea",
@@ -21,6 +22,7 @@ Product Endpoints
          "productID": 2,
          "name": "Product B",
          "description": "Description of Product B",
+         "imageURL": "./images/testimage2.png",
          "price": 15.99,
          "quantity": 50,
          "category": "Coffee",
@@ -48,7 +50,7 @@ Product Endpoints
        ...
      ]
 
-3. GET /product/get-product
+3. POST /product/get-product
    - Description: Retrieves details of a specific product.
    - Example Call: GET /get-product
    - JSON Body: { "productID": 123 }

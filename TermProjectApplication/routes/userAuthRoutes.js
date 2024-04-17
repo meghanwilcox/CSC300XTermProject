@@ -40,12 +40,19 @@ async function getDBConnection() {
             // Call the appropriate method from UserAuthController to validate the user login
             const user = await userAuthController.loginUser(userData);
             // Return the user data or appropriate response based on validation result
+            if (req.session) {
+                console.log("session!!!!!");
+                req.session.currentUser=user;
+                console.log(req.session.currentUser);
+            }
+
             res.json(user);
         } catch (error) {
             console.error('Error logging in user:', error);
             res.status(500).json({ error: 'Failed to log in user' });
         }
     });
+
 
     //define the route for checking if a user is an admin
     router.post('/isAdmin', async (req, res) => {
@@ -68,6 +75,18 @@ async function getDBConnection() {
         } catch (error) {
             console.error('Error abandoning cart:', error);
             res.status(500).json({ error: 'Failed to abandoning cart' });
+        }
+    });
+
+    //define a route to retreive a product for a specific productID
+    router.post('/get-userID', async (req, res) => {
+        try {
+            const userData = req.body;
+            const userID = await userAuthController.getUserID(userData);
+            res.status(200).json(userID);
+        } catch (error) {
+            console.error('Error retreiving userID', error);
+            res.status(500).json({error: 'Failed to retreive userID'})
         }
     });
 
