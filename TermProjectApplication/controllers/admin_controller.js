@@ -51,6 +51,27 @@ class AdminController {
         }
     }
 
+    //this function creates a new item in the database
+    async createItemListing(itemData) {
+        try {
+            console.log('Attempting to create new listing:', itemData);
+    
+            // Insert a new item record into the database
+            const result = await this.db.run(
+                'INSERT INTO Products (userID, name, description, imageURL, price, quaantity, category, isFeatured) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                [itemData.userID, itemData.name, itemData.description, itemData.imageURL, itemData.price, itemData.quantity, itemData.category, itemData.isFeatured]
+            );
+    
+            console.log('New item created successfully:', result);
+    
+            // Return the newly registered user data
+            return { id: result.lastID, ...itemData };
+        } catch(error) {
+            console.error('Error creating new listing.');
+            throw new Error('Failed to create new listing:' + error.message);
+        }
+    }
+
 }
 
 module.exports = AdminController;

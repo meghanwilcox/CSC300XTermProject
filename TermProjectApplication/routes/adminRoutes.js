@@ -53,6 +53,18 @@ async function getDBConnection() {
         }
     });
 
+    //defines a route to create a new item
+    router.post('/create-new-listing', async (req, res) => {
+        try {
+            const itemData = req.body;
+            const newItem = await adminController.createItemListing(itemData);
+            res.status(201).json(newItem);
+        } catch (error) {
+            console.error('Error creating new item: ', error);
+            res.status(500).json({ error: 'Failed to create new item' });
+        }
+    });
+
 })();
 
 module.exports = router;
