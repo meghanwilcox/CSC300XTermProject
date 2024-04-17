@@ -79,6 +79,8 @@ class ProductController {
     //this function adds a product to a cart. It creates a new cart for a user if they don't already have one, and adds the product to thier cart
     async addProductToCart(data) {
         try {
+
+            console.log(`Attempting to add product: ${data.productID}, to user: ${data.userID}'s cart.`);
             // Check if the user already has a cart
             let cartID = await this.db.get('SELECT cartID FROM Carts WHERE userID = ?', [data.userID]);
     
@@ -104,6 +106,8 @@ class ProductController {
     //this function searches for and returns all the products that have a name or description that matches the keywords
     async searchProducts(keywords) {
         try {
+
+            console.log(`Attempting to search for products with keywords: ${keywords}`);
             // Construct the SQL query to search for products based on keywords
             const query = `
                 SELECT * 
@@ -114,6 +118,7 @@ class ProductController {
             // Execute the SQL query against the database
             const products = await this.db.all(query, [`%${keywords}%`, `%${keywords}%`]);
 
+            console.log('Products found successfully!', products);
             return products;
         } catch (error) {
             console.error('Error searching for products:', error);

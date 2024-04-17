@@ -56,7 +56,7 @@ async function getDBConnection() {
         }
     });
 
-    //defines a route to register a new user
+    //defines a route to add a product to a cart
     router.post('/add-product-to-cart', async (req, res) => {
         try {
             const { productID, quantity } = req.body;
@@ -69,15 +69,15 @@ async function getDBConnection() {
                 console.log('no current user');
             }
             
-            // const data = {
-            //     userID: userID,
-            //     productID: productID,
-            //     quantity: quantity
-            // };
+            const data = {
+                userID: userID,
+                productID: productID,
+                quantity: quantity
+            };
 
-            // const cartProduct = await productController.addProductToCart(data);
+            const cartProduct = await productController.addProductToCart(data);
 
-            // res.status(201).json(cartProduct);
+            res.status(201).json(cartProduct);
         } catch (error) {
             console.error('Error adding product to cart: ', error);
             res.status(500).json({ error: 'Failed to add product to cart' });
@@ -94,6 +94,7 @@ async function getDBConnection() {
             }
 
             const products = await productController.searchProducts(keywords);
+            
             res.json(products);
         } catch (error) {
             console.error('Error searching for products:', error);
