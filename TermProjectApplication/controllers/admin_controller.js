@@ -72,31 +72,6 @@ class AdminController {
         }
     }
 
-// ################################################################################################################################################################
-
-    //this function searches for and returns all the products that have a name or description that matches the keywords
-    async searchProducts(keywords) {
-        try {
-
-            console.log(`Attempting to search for products with keywords: ${keywords}`);
-            // Construct the SQL query to search for products based on keywords
-            const query = `
-                SELECT * 
-                FROM Products 
-                WHERE name LIKE ? OR description LIKE ?
-            `;
-
-            // Execute the SQL query against the database
-            const products = await this.db.all(query, [`%${keywords}%`, `%${keywords}%`]);
-
-            console.log('Products found successfully!', products);
-            return products;
-        } catch (error) {
-            console.error('Error searching for products:', error);
-            throw new Error('Failed to search for products');
-        }
-    }
-
     //this function retrieves all the items frm the database
     async getAllProducts() {
         try {
@@ -107,7 +82,7 @@ class AdminController {
                 'SELECT * FROM Products;'
              );
 
-             if(!products|| products.length === 0) {
+             if(!products || products.length === 0) {
                 console.log('No items found.');
                 return [];
              }

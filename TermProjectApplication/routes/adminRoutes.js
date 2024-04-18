@@ -15,7 +15,7 @@ async function getDBConnection() {
     return db;
 }
 
-// Initialize the UserAuthController with the database connection
+// Initialize the admin controller with the database connection
 (async () => {
 
     const db = await getDBConnection();
@@ -65,37 +65,21 @@ async function getDBConnection() {
         }
     });
 
-// ###################################################################################################################################################
+    //Define a route to retreive the list of all items
+    router.get('/get-all-products', async (req, res) => {
+        try {
+            const products = await adminController.getAllProducts();
+            res.status(200).json(products);
+        } catch(error) {
+            console.error('Error retreiving all products: ', error);
+            res.status(500).json({error: 'Failed to retreive all products'});
+        }
+    });
+
 
 })();
-// Define a route to search for products by keywords
-router.get('/search', async (req, res) => {
-    try {
-        const { keywords } = req.query;
 
-        if (!keywords) {
-            return res.status(400).json({ error: 'Keywords are required for search' });
-        }
 
-        const products = await adminController.searchProducts(keywords);
-
-        res.json(products);
-    } catch (error) {
-        console.error('Error searching for products:', error);
-        res.status(500).json({ error: 'Failed to search for products' });
-    }
-});
-
-//Define a route to retreive the list of all items
-router.get('/get-all-products', async (req, res) => {
-    try {
-        const products = await adminController.getAllProducts();
-        res.status(200).json(products);
-    } catch(error) {
-        console.error('Error retreiving all products: ', error);
-        res.status(500).json({error: 'Failed to retreive all products'});
-    }
-});
 
 
 
