@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sip 'n Snuggles: Coffee for a Cause</title>
+    <link rel="stylesheet" href="/style.css">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <header>
+        <!-- body1_container holds the header/navigation bar thats present on every page-->
+        <div id="body1_container"><!--inline-->
+            
+            <img src="/images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
+
+            <div id="search">
+                <input type="text" class="search_bar" placeholder="Search">
+            </div>
+
+            <div>
+                <form action="/user/filter" method="POST">
+                    <input type="hidden" name="category" value="Coffee">
+                    <button type="submit" class="nav_bar">Coffee</button>
+                </form>            
+            </div>
+
+            <div>
+                <form action="/user/filter" method="POST">
+                    <input type="hidden" name="category" value="Tea">
+                    <button type="submit" class="nav_bar">Tea</button>
+                </form>            
+            </div>
+
+            <div>
+                <form action="/user/filter" method="POST">
+                    <input type="hidden" name="category" value="Accessories">
+                    <button type="submit" class="nav_bar">Accessories</button>
+                </form>            
+            </div>
+
+            <div>
+                <button class="nav_bar" >Cart 🛒</button>
+            </div>
+
+            <div>
+                <button id="index-logout-btn" class="nav_bar" >Logout</button>
+            </div>
+        </div>
+    </header>

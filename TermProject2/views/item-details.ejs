@@ -1,0 +1,25 @@
+<%- include('./partials/head') %>
+<div class="product-detail-container" id="prod-details-container-main">
+    <div class="product-image-container" id="product-image-container-main">
+        <img src="<%= imageURL %>">
+    </div>
+
+    <div class="product-details" id="product-details-container-text">
+        <h1><%= item.name %></h1><br>
+        <h2><%= item.price %></h2><br><br>
+        <p><%= item.description %></p>
+        <button>Add to Cart</button>
+    </div>
+</div>
+
+<footer><!--this is the footer-->
+    <div id="footer_background">
+        <div id="coffee_bean_footer_accent">
+            <p>Copyright © 2024 Sip 'n Snuggles</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>

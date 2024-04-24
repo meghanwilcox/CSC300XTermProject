@@ -1,0 +1,39 @@
+<%- include('./partials/head') %>
+
+        <div id="title-container">
+            <div id="title">
+                ☕ <%= title %> ☕
+            </div>
+        </div>
+
+        <!--this container holds the cat prints that go across the screen as a divider-->
+        <div class="cat_prints_container"> <!--block-->
+            <hr class="cat_prints">
+        </div>
+
+        <div id="product-list-container">
+            <% for (const item of items){ %>
+                <div class="listed-product">
+                    <a href="/user/item-details/<%= item.productID %>">
+                        <img src="<%= item.imageURL %>">
+                    </a>
+                    <p><%= item.name %></p>
+                    <p><%= item.price %></p>
+                </div>
+                <% } %>
+        </div>
+
+<!--this container holds the cat prints that go across the screen as a divider-->
+    <div class="cat_prints_container"> <!--block-->
+        <hr class="cat_prints">
+    </div>
+
+    <footer><!--this is the footer-->
+        <div id="footer_background">
+            <div id="coffee_bean_footer_accent">
+                <p>Copyright © 2024 Sip 'n Snuggles</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
