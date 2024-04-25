@@ -1,0 +1,25 @@
+<%- include('./partials/admin-head') %>
+
+<body>
+    <h1>Edit Product</h1>
+    <form action="/admin/edit/<%= product.productID %>" method="POST">
+        <div>
+            <label for="name">Name:</label>
+            <input id="name" type="text" placeholder="Name" name="name" value="<%= product.name %>">
+        </div>
+        
+        <div>
+            <label for="price">Price:</label>
+            <input id="price" type="number" min="0" step="0.01" placeholder="Price" name="price" value="<%= product.price %>">
+        </div>
+        
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" placeholder="Description"><%= product.description %></textarea>
+        </div>
+        
+        <button type="submit">Save Changes</button>
+    </form>
+    \
+</body>
+</html>

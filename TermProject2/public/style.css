@@ -463,3 +463,35 @@ footer #coffee_bean_footer_accent{
 #product-3{
     border: 5px solid black;
 }
+
+/* ##################################### Admin Styles ################################################### */
+
+#item-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 25px;
+    align-items: center;
+}
+
+.product-item {
+    position: relative;
+    width: 419px;
+    margin: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.product-item:hover .view-item-btn {
+    opacity: 1;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: filter 0.3s ease-in-out;
+}

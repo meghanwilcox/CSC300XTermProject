@@ -1,0 +1,57 @@
+<%- include('./partials/admin-head') %>
+    <main>
+
+        <body>
+            <div id="p-container">
+
+                <!DOCTYPE html>
+                <html lang="en">
+
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Bulk Upload</title>
+                </head>
+
+                <body>
+                    <h1>Bulk Upload Products</h1>
+
+                    <pre>
+
+                        Example JSON File
+
+            [
+                {
+                    "name": "Product 1",
+                    "description": "Description 1",
+                    "category": "Category 1",
+                    "quantity": 20,
+                    "price": 10.99,
+                    "imageURL":  imagepath1.jpg
+                },
+                {
+                    "name": "Product 2",
+                    "description": "Description 2",
+                    "category": "Category 2",
+                    "quantity": 20,
+                    "price": 19.99,
+                    "imageURL": imagepath2.jpg
+                },
+                // ... more products
+            ]
+        </pre>
+
+                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="productsFile" accept=".json" required>
+                        <button type="submit">Upload</button>
+                    </form>
+
+
+
+            </div>
+
+        </body>
+
+    </main>
+
+    </html>
