@@ -27,25 +27,13 @@ function getAll(req, res, next) {
   }
 }
 
-//************************************ */
+// Function to load the main page
 function loadMainPage(req, res, next){
   let items = model.getFeaturedProducts();
   try{
     res.render("shopper-home", {items: items});
   } catch (err) {
     console.error("Error while getting items ", err.message);
-    next(err);
-  }
-}
-
-// Function to retrieve all items to be approved
-function getAllToBeApproved(req, res, next){
-  let items = model.getAllToBeApproved();
-  try{
-    // Rendering the view with items to be approved
-    res.render("admin-listings", {items: items, title: 'All Items to be Approved'});
-  }catch(err){
-    console.error("Error getting items", err.message);
     next(err);
   }
 }
@@ -88,54 +76,6 @@ function login(req, res, next){
   }
 }
 
-// Function to list a new item
-function listNewItem(req, res, next) {
-  try {
-      // Extracting item details from request body
-      let userName = req.session.currentUser.userName;
-      let itemName = req.body.itemName;
-      let itemPrice = parseFloat(req.body.itemPrice);
-      let description = req.body.description;
-      let condition = req.body.condition;
-      let category = req.body.category;
-      let approval_status = 0;
-      let sold = 0;
-      
-      let params = [userName, itemName, itemPrice, description, condition, category, approval_status, sold];
-       model.listNewItem(params);
-      res.redirect('/user/all');
-
-  } catch (err) {
-      console.error("Error while creating item ", err.message);
-      next(err);
-  }
-}
-
-// Function to validate email and register user
-function validateEmail(req, res, next){
-    let userName = req.body.userName;
-    let password = req.body.password;
-    let email = req.body.email;
-    let firstName = req.body.firstName;
-    let lastName = req.body.lastName;
-    let isAdmin = 0;
-    let banned = 0;
-        
-    let params = [userName, password, email, firstName, lastName, isAdmin, banned];
-
-    // Validating email using Abstract API
-    axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=7f82c8544978407d8ccb435d3df2062f&email=${email}`)
-    .then(response => {
-        model.register(params);
-        res.render("index", { title: 'Login'});
-    })
-    .catch(error => {
-        console.log('Email not validated!');
-        // Sending an error response to the client
-        res.status(500).json({ error: 'An error occurred while validating the email.' });
-    });
-}
-
 // Function to render the registration page
 function loadRegisterPage(req, res, next){
   res.render('register');
@@ -167,7 +107,7 @@ function search(req, res, next){
   let items = model.search(keyword);
   console.log(items);
   try {
-    res.render("search-results", { items: items, title: 'Searched Items', user: req.session.currentUser.email });
+    res.render("search-results", { items: items, title: 'Searched Items' });
   } catch (err) {
     console.error("Error while searching items ", err.message);
     next(err);
@@ -185,102 +125,7 @@ function getByCategory(req, res, next){
   }
 }
 
-// Function to retrieve pricing information for all items
-function getPricingInfoAll(req, res, next){
-  let data = model.getPricingInfoAll();
-  try{
-    res.render("pricing-info", {title: 'Pricing Info', user: req.session.currentUser.email, data: data, category: "All", numListed: data.numListed  });
-  }catch(err){
-    console.error("Error getting info all", err.message);
-    next(err);
-  }
-}
-
-// Function to retrieve pricing information for a specific category
-function getPricingInfoCategory(req, res, next){
-  let data = model.getPricingInfoCategory(req.body.category);
-  let numListed = model.getNumListedCategory(req.body.category);
-  try{
-    res.render("pricing-info", {title: 'Pricing Info', user: req.session.currentUser.email, data: data, category: req.body.category, numListed: numListed.numListed  });
-  }catch(err){
-    console.error("Error getting info all", err.message);
-    next(err);
-  }
-}
-
-// Function to retrieve sellers
-function getSellers(req, res, next){
-  let sellers = model.getSellers();
-  try{
-    res.render("sellers", {title: 'Sellers', user: req.session.currentUser.email, sellers: sellers  });
-  }catch(err){
-    console.error("Error getting info all", err.message);
-    next(err);
-  }
-}
-
-// Function to retrieve ratings for a seller
-function getRatings(req, res, next){
-  let reviews = model.getRatings(req.params.email);
-  let user = model.getUserNameByEmail(req.params.email);
-  let userName = user[0].userName;
-  try{
-    res.render("seller-reviews", {title: 'Reviews for ' + req.params.email, user: req.session.currentUser.email, reviews: reviews, email: req.params.email, username: userName  });
-  }catch(err){
-    console.error("Error getting info all", err.message);
-    next(err);
-  }
-}
-
-// Function to leave a review for a seller
-function leaveReview(req, res, next){
-  try {
-    let userName = req.body.userName;
-    let numberOfStars = req.body.numberOfStars;
-    let ratingComment = req.body.ratingComment;
-    
-    if(userName === req.session.currentUser.userName){
-      throw new Error('Cannot review yourself!');
-    }
-    let params = [userName, numberOfStars, ratingComment];
-    model.leaveReview(params);
-  } catch (err) {
-      console.error("Error while creating review ", err.message);
-      next(err);
-  }
-}
-
-// Function to generate user profile
-function generateProfile(req, res, next){
-  try{
-    let firstName = req.session.currentUser.firstName;
-    let reviews = model.getRatings(req.session.currentUser.email);
-    let group = model.getItemsAwaitingApproval(req.session.currentUser.userName);
-    let items = model.getItemsForSale(req.session.currentUser.userName);
-    res.render("user-profile", {title: 'Profile', user: req.session.currentUser.email, firstName: firstName, reviews: reviews, group: group, items: items  });
-  }catch (err) {
-    console.error("Error while creating profile ", err.message);
-    next(err);
-  }
-}
-
-// Function to mark an item as sold
-function markSold(req, res, next){
-  let itemID = req.body.itemID;
-  model.markSold(itemID);
-  try{
-    let firstName = req.session.currentUser.firstName;
-    let reviews = model.getRatings(req.session.currentUser.email);
-    let group = model.getItemsAwaitingApproval(req.session.currentUser.userName);
-    let items = model.getItemsForSale(req.session.currentUser.userName);
-    res.render("user-profile", {title: 'Profile', user: req.session.currentUser.email, firstName: firstName, reviews: reviews, group: group, items: items  });
-  }catch (err) {
-    console.error("Error while creating profile ", err.message);
-    next(err);
-  }
-
-}
-
+// Function to add a product to the cart
 function addToCart(req, res, next) {
   // Extract userID from session
   let userID = req.session.currentUser.userID;
@@ -324,82 +169,142 @@ function addToCart(req, res, next) {
   }
 }
 
+// Function to retrieve products in the cart
 function getCartProducts(req, res, next){
   const userID = req.session.currentUser.userID;
   const cartProducts = model.getCartProducts(userID);
   console.log("Products in cart for cart page: " + JSON.stringify(cartProducts));
+  console.log("cartid: "+  JSON.stringify(cartProducts[0].cartID));
 
-  let totalQuantity = 0;
-  let subtotal = 0;
-  const taxRate = 0.0675; // Tax rate of 6.75%
+  if(!JSON.stringify(cartProducts[0])){
+    //load empty cart page
+    res.render("empty-cart");
+  }
+  else{
+    const cartID = JSON.stringify(cartProducts[0].cartID);
+    let totalQuantity = 0;
+    let subtotal = 0;
+    const taxRate = 0.0675; // Tax rate of 6.75%
 
-  // Loop through cartProducts and sum up the quantities
-  cartProducts.forEach(product => {
-    totalQuantity += product.quantity;
-    subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
-  });
+    // Loop through cartProducts and sum up the quantities
+    cartProducts.forEach(product => {
+      totalQuantity += product.quantity;
+      subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
+    });
 
-  // Calculate tax
-  let tax = subtotal * taxRate;
-  tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
+    // Calculate tax
+    let tax = subtotal * taxRate;
+    tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
 
-  // Calculate total price
-  let totalPrice = subtotal + tax + 15.0;
-  totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
+    // Calculate total price
+    let totalPrice = subtotal + tax + 15.0;
+    totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
 
-  console.log("Total quantity of products in cart: " + totalQuantity);
-  console.log("Subtotal before tax: " + subtotal);
-  console.log("Tax: " + tax);
-  console.log("Total price including tax: " + totalPrice);
+    console.log("Total quantity of products in cart: " + totalQuantity);
+    console.log("Subtotal before tax: " + subtotal);
+    console.log("Tax: " + tax);
+    console.log("Total price including tax: " + totalPrice);
 
-  res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice });
+    res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice, cartID: cartID });
+  }
 }
 
+// Function to update cart product quantity
 function updateCartProductQuantity(req, res, next){
-  const userID = req.session.currentUser.userID;
-  const cartID = req.body.cartID;
-  const productID = req.body.productID;
-  const newQuantity = req.body.newQuantity;
-  let updatedProd = model.editCartQuantity(userID, cartID, productID, newQuantity);
-  console.log('updated quantity: ' + updatedProd);
+  let userID = req.session.currentUser.userID;
+  let cartID = req.body.cartID;
+  let productID = req.body.productID;
+  let newQuantity = req.body.newQuantity;
+
+  let OKresult = model.checkQuantityOK(productID, cartID);
+
+  if(newQuantity <= 0){
+    console.log("quantity must be at least 1");
+  }
+  else if(newQuantity > OKresult[0].Pquantity){
+    console.log('quantity too high, not enough stock available!');
+  }
+  else{
+    let updatedProd = model.editCartQuantity(userID, cartID, productID, newQuantity);
+    console.log('updated quantity: ' + updatedProd);
+    const cartProducts = model.getCartProducts(userID);
+  console.log("Products in cart for cart page: " + JSON.stringify(cartProducts));
+  console.log("cartid: "+  JSON.stringify(cartProducts[0].cartID));
+
+  if(!JSON.stringify(cartProducts[0])){
+    //load empty cart page
+    res.render("empty-cart");
+  }
+  else{
+    let totalQuantity = 0;
+    let subtotal = 0;
+    const taxRate = 0.0675; // Tax rate of 6.75%
+
+    // Loop through cartProducts and sum up the quantities
+    cartProducts.forEach(product => {
+      totalQuantity += product.quantity;
+      subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
+    });
+
+    // Calculate tax
+    let tax = subtotal * taxRate;
+    tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
+
+    // Calculate total price
+    let totalPrice = subtotal + tax + 15.0;
+    totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
+
+    console.log("Total quantity of products in cart: " + totalQuantity);
+    console.log("Subtotal before tax: " + subtotal);
+    console.log("Tax: " + tax);
+    console.log("Total price including tax: " + totalPrice);
+
+    res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice, cartID: cartID });
+  }
+}
 }
 
+// Function to remove a product from the cart
 function removeCartProduct(req, res, next){
   const userID = req.session.currentUser.userID;
   const cartID = req.body.cartID;
   const productID = req.body.productID;
   model.removeCartProduct(userID, cartID, productID);
-
   const cartProducts = model.getCartProducts(userID);
-  console.log("Products in cart for cart page: " + JSON.stringify(cartProducts));
 
-  let totalQuantity = 0;
-  let subtotal = 0;
-  const taxRate = 0.0675; // Tax rate of 6.75%
+  if(!JSON.stringify(cartProducts[0])){
+    //load empty cart page
+    res.render("empty-cart");
+  }
+  else{
+    let totalQuantity = 0;
+    let subtotal = 0;
+    const taxRate = 0.0675; // Tax rate of 6.75%
 
-  // Loop through cartProducts and sum up the quantities
-  cartProducts.forEach(product => {
-    totalQuantity += product.quantity;
-    subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
-  });
+    // Loop through cartProducts and sum up the quantities
+    cartProducts.forEach(product => {
+      totalQuantity += product.quantity;
+      subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
+    });
 
-  // Calculate tax
-  let tax = subtotal * taxRate;
-  tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
+    // Calculate tax
+    let tax = subtotal * taxRate;
+    tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
 
-  // Calculate total price
-  let totalPrice = subtotal + tax + 15.0;
-  totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
+    // Calculate total price
+    let totalPrice = subtotal + tax + 15.0;
+    totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
 
-  console.log("Total quantity of products in cart: " + totalQuantity);
-  console.log("Subtotal before tax: " + subtotal);
-  console.log("Tax: " + tax);
-  console.log("Total price including tax: " + totalPrice);
+    console.log("Total quantity of products in cart: " + totalQuantity);
+    console.log("Subtotal before tax: " + subtotal);
+    console.log("Tax: " + tax);
+    console.log("Total price including tax: " + totalPrice);
 
-  res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice });
-
+    res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice, cartID: cartID });
+  }
 }
 
+// Function to handle cart purchase
 function purchaseCart(req, res, next){
   const userID = req.session.currentUser.userID;
   const cartID = req.body.cartID;
@@ -407,68 +312,89 @@ function purchaseCart(req, res, next){
   model.cartPurchased(userID, cartID);
 
   const cartProducts = model.getCartProducts(userID);
-  console.log("Products in cart for cart page: " + JSON.stringify(cartProducts));
 
-  let totalQuantity = 0;
-  let subtotal = 0;
-  const taxRate = 0.0675; // Tax rate of 6.75%
+  if(!JSON.stringify(cartProducts[0])){
+    //load empty cart page
+    res.render("empty-cart");
+  }
+  else{
+    let totalQuantity = 0;
+    let subtotal = 0;
+    const taxRate = 0.0675; // Tax rate of 6.75%
 
-  // Loop through cartProducts and sum up the quantities
-  cartProducts.forEach(product => {
-    totalQuantity += product.quantity;
-    subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
-  });
+    // Loop through cartProducts and sum up the quantities
+    cartProducts.forEach(product => {
+      //decrease product quantity
+      totalQuantity += product.quantity;
+      subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
+    });
 
-  // Calculate tax
-  let tax = subtotal * taxRate;
-  tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
+    // Calculate tax
+    let tax = subtotal * taxRate;
+    tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
 
-  // Calculate total price
-  let totalPrice = subtotal + tax + 15.0;
-  totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
+    // Calculate total price
+    let totalPrice = subtotal + tax + 15.0;
+    totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
 
-  console.log("Total quantity of products in cart: " + totalQuantity);
-  console.log("Subtotal before tax: " + subtotal);
-  console.log("Tax: " + tax);
-  console.log("Total price including tax: " + totalPrice);
+    console.log("Total quantity of products in cart: " + totalQuantity);
+    console.log("Subtotal before tax: " + subtotal);
+    console.log("Tax: " + tax);
+    console.log("Total price including tax: " + totalPrice);
 
-  res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice });
+    res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice, cartID: cartID });
+  }
 }
-
-
 
 // Function to handle user logout
 function logout(req, res, next){
-  req.session.currentUser = null;
-  res.redirect("/");
-  console.log("user logged out successfully");
+  const userID = req.session.currentUser.userID;
+
+  //check if a cart exists for this user
+  const cart = model.getCart(userID);
+  
+  if(!JSON.stringify(cart)){
+    //no cart exists for user, can logout
+    req.session.currentUser = null;
+    res.redirect("/");
+    console.log("user logged out successfully");
+  } else {
+    const cartID = JSON.stringify(cart[0].cartID);
+    model.abandonCart(userID, cartID);
+    req.session.currentUser = null;
+    res.redirect("/");
+    console.log('user logged out successfully!');
+  } 
 }
 
+//function to register a new user
+function register(req, res, next){
+    let password = req.body.password;
+    let email = req.body.email;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+        
+    let params = [firstName, lastName, email, password];
 
+    console.log(params);
+    model.register(params);
+    res.render("index");
+}
 
 // Exporting all functions
 module.exports = {
   getAll,
   loadMainPage,
   login,
-  listNewItem,
-  getAllToBeApproved,
   loadRegisterPage,
-  validateEmail,
   getOneById,
   search,
   getByCategory,
-  getPricingInfoAll,
-  getPricingInfoCategory,
-  getSellers,
-  getRatings,
-  leaveReview,
-  generateProfile,
-  markSold,
   logout,
   addToCart,
   getCartProducts,
   updateCartProductQuantity,
-   removeCartProduct,
-   purchaseCart
+  removeCartProduct,
+  purchaseCart,
+  register
 };

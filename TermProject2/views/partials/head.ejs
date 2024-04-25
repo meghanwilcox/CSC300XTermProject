@@ -22,6 +22,13 @@
                 <input type="text" class="search_bar" placeholder="Search">
             </div>
 
+            <div id="search">
+                <form action="/user/search" method="POST">
+                        <input type="text" class="search_bar" placeholder="Search" name="keyword">
+                        <button id="search-btn" type="submit">⌕</button>
+                </form>
+            </div>
+
             <div>
                 <form action="/user/filter" method="POST">
                     <input type="hidden" name="category" value="Coffee">
