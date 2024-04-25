@@ -1,0 +1,58 @@
+<%- include('./partials/head') %>
+<div class="container">
+    <h1>Shopping Cart</h1>
+
+    <% for (const item of items){ %>
+        <div class="cart-item">
+            <div class="product">
+                <a href="/user/item-details/<%= item.productID %>">
+                    <img src="<%= item.imageURL %>">
+                </a>                
+                <div class="details">
+                    <p class="name"><%= item.name %></p>
+                    <p class="price"><%= item.price %></p>
+                </div>
+        </div>
+        <div class="quantity">
+            <form action="/user/updateQuantity" method="POST">
+                <input type="hidden" value="<%= item.cartID %>" name="cartID">
+                <input type="hidden" value="<%= item.productID %>" name="productID">
+                <input type="number" value="<%= item.quantity %>" name="newQuantity" class="quantity-input">
+                <button type="submit">Update</button>
+            </form>
+
+            <form action="/user/removeCartProduct" method="POST">
+                <input type="hidden" value="<%= item.cartID %>" name="cartID">
+                <input type="hidden" value="<%= item.productID %>" name="productID">
+                <button type="submit">Remove From Cart</button>
+            </form>
+        </div>
+        <% } %>
+
+        <div class="cart-total">
+            <p>Total Items: <%= totalQuantity %></p>
+            <p>Subtotal: $<%= subtotal %></p>
+            <p>Tax (6.75%): $<%= tax %></p>
+            <p>Delivery Fee: $15.00</p>
+
+            <p>Total: $<%= totalPrice %></p>
+        </div>
+
+        <form action="/user/purchaseCart" method="POST">
+            <input type="hidden" value="<%= cartID %>" name="cartID">
+            <button type="submit">Checkout</button>
+        </form>
+</div>
+
+
+<footer><!--this is the footer-->
+    <div id="footer_background">
+        <div id="coffee_bean_footer_accent">
+            <p>Copyright © 2024 Sip 'n Snuggles</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>

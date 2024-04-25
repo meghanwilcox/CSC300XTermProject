@@ -164,6 +164,64 @@ function markSold(params){
   return item;
 }
 
+function checkForNewCart(params){
+  let sql = `SELECT count(*) as count FROM Carts WHERE status = 'new' AND userID = ?;`;
+  const check = db.all(sql, params);
+  return check;
+}
+
+function createNewCart(params){
+  let sql = `INSERT INTO Carts(userID, status, createdDate) VALUES (?, 'new', date('now'));`;
+  const newCart = db.run(sql, params);
+  return newCart;
+}
+
+function createCartProduct(userID, cartID, productID) {
+  let sql = `INSERT INTO CartProducts(userID, cartID, productID, quantity) VALUES (?, ?, ?, 1);`;
+  const cartProduct = db.run(sql, [userID, cartID, productID]);
+  return cartProduct;
+}
+
+function getCart(userID){
+  let sql = `SELECT cartID FROM Carts WHERE status = 'new' AND userID = ${userID};`;
+  const cart = db.all(sql);
+  return cart;
+}
+
+function checkExistingProduct(userID, cartID, productID){
+  let sql = `SELECT count(*) as count, quantity FROM CartProducts WHERE userID = ${userID} AND cartID = ${cartID} AND productID = ${productID};`;
+  const product = db.all(sql);
+  return product;
+}
+
+function editCartQuantity(userID, cartID, productID, newQuantity) {
+  let sql = `UPDATE CartProducts SET quantity = ? WHERE userID = ? AND cartID = ? AND productID = ?;`;
+  const updatedProduct = db.run(sql, [newQuantity, userID, cartID, productID]);
+  return updatedProduct;
+}
+
+function getCartProducts(userID){
+  let sql = `SELECT P.name, P.price, P.productID, CP.cartID, CP.quantity
+  FROM Products AS P
+  JOIN CartProducts AS CP ON P.productID = CP.productID
+  JOIN Carts AS C ON CP.cartID = C.cartID
+  WHERE C.status = 'new' AND C.userID = ?;`;
+  const cartProducts = db.all(sql, userID);
+  return cartProducts;
+}
+
+function removeCartProduct(userID, cartID, productID) {
+  let sql = `DELETE FROM CartProducts WHERE userID = ? AND cartID = ? AND productID = ?;`;
+  const result = db.run(sql, [userID, cartID, productID]);
+  return result;
+}
+
+function cartPurchased(userID, cartID){
+  let sql = `UPDATE Carts SET status = 'purchased' WHERE userID = ? AND cartID = ?;`;
+  const result = db.run(sql, [userID, cartID]);
+  return result; 
+}
+
 // Exporting all functions
 module.exports = {
   getFeaturedProducts,
@@ -183,5 +241,14 @@ module.exports = {
   leaveReview,
   getItemsForSale,
   getItemsAwaitingApproval,
-  markSold
+  markSold,
+  checkForNewCart,
+  createNewCart,
+  createCartProduct,
+  getCart,
+  checkExistingProduct,
+  editCartQuantity,
+   getCartProducts,
+   removeCartProduct,
+   cartPurchased
 };

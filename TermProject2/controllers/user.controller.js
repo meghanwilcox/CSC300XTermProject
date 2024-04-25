@@ -281,11 +281,170 @@ function markSold(req, res, next){
 
 }
 
+function addToCart(req, res, next) {
+  // Extract userID from session
+  let userID = req.session.currentUser.userID;
+  console.log('UserID:', userID);
+
+  // Extract productID from request body
+  let productID = req.body.productID;
+  console.log('ProductID:', productID);
+
+  // Check if user has an existing cart
+  let cart = model.checkForNewCart(userID);
+  console.log('Number of carts found for user:', cart[0].count);
+
+  if (cart[0].count > 0) {
+    // Cart exists, retrieve it and insert into it
+    const existingCart = model.getCart(userID);
+    const existingCartID = existingCart[0].cartID;
+
+    // Check if the product already exists in the cart
+    const product = model.checkExistingProduct(userID, existingCartID, productID);
+    
+    if (product[0].count) {
+      // Increase quantity by 1 if product exists in cart
+      let newQuantity = product[0].quantity + 1;
+      let updatedCartProduct = model.editCartQuantity(userID, existingCartID, productID, newQuantity);
+      console.log('Updated cart product:', updatedCartProduct);
+    } else {
+      // No existing entry in cart for this product, add as normal
+      let cartProduct = model.createCartProduct(userID, existingCartID, productID);
+      console.log('New cart product added:', cartProduct);
+    }
+  } else {
+    // Create a new cart if user doesn't have one
+    const newCart = model.createNewCart(userID);
+    const cartID = newCart.lastInsertRowid;
+    console.log('New cart created with ID:', cartID);
+
+    // Create the cart product for the new cart
+    let cartProduct = model.createCartProduct(userID, cartID, productID);
+    console.log('New cart product added:', cartProduct);
+  }
+}
+
+function getCartProducts(req, res, next){
+  const userID = req.session.currentUser.userID;
+  const cartProducts = model.getCartProducts(userID);
+  console.log("Products in cart for cart page: " + JSON.stringify(cartProducts));
+
+  let totalQuantity = 0;
+  let subtotal = 0;
+  const taxRate = 0.0675; // Tax rate of 6.75%
+
+  // Loop through cartProducts and sum up the quantities
+  cartProducts.forEach(product => {
+    totalQuantity += product.quantity;
+    subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
+  });
+
+  // Calculate tax
+  let tax = subtotal * taxRate;
+  tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
+
+  // Calculate total price
+  let totalPrice = subtotal + tax + 15.0;
+  totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
+
+  console.log("Total quantity of products in cart: " + totalQuantity);
+  console.log("Subtotal before tax: " + subtotal);
+  console.log("Tax: " + tax);
+  console.log("Total price including tax: " + totalPrice);
+
+  res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice });
+}
+
+function updateCartProductQuantity(req, res, next){
+  const userID = req.session.currentUser.userID;
+  const cartID = req.body.cartID;
+  const productID = req.body.productID;
+  const newQuantity = req.body.newQuantity;
+  let updatedProd = model.editCartQuantity(userID, cartID, productID, newQuantity);
+  console.log('updated quantity: ' + updatedProd);
+}
+
+function removeCartProduct(req, res, next){
+  const userID = req.session.currentUser.userID;
+  const cartID = req.body.cartID;
+  const productID = req.body.productID;
+  model.removeCartProduct(userID, cartID, productID);
+
+  const cartProducts = model.getCartProducts(userID);
+  console.log("Products in cart for cart page: " + JSON.stringify(cartProducts));
+
+  let totalQuantity = 0;
+  let subtotal = 0;
+  const taxRate = 0.0675; // Tax rate of 6.75%
+
+  // Loop through cartProducts and sum up the quantities
+  cartProducts.forEach(product => {
+    totalQuantity += product.quantity;
+    subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
+  });
+
+  // Calculate tax
+  let tax = subtotal * taxRate;
+  tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
+
+  // Calculate total price
+  let totalPrice = subtotal + tax + 15.0;
+  totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
+
+  console.log("Total quantity of products in cart: " + totalQuantity);
+  console.log("Subtotal before tax: " + subtotal);
+  console.log("Tax: " + tax);
+  console.log("Total price including tax: " + totalPrice);
+
+  res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice });
+
+}
+
+function purchaseCart(req, res, next){
+  const userID = req.session.currentUser.userID;
+  const cartID = req.body.cartID;
+
+  model.cartPurchased(userID, cartID);
+
+  const cartProducts = model.getCartProducts(userID);
+  console.log("Products in cart for cart page: " + JSON.stringify(cartProducts));
+
+  let totalQuantity = 0;
+  let subtotal = 0;
+  const taxRate = 0.0675; // Tax rate of 6.75%
+
+  // Loop through cartProducts and sum up the quantities
+  cartProducts.forEach(product => {
+    totalQuantity += product.quantity;
+    subtotal += product.quantity * product.price; // Assuming there's a price attribute for each product
+  });
+
+  // Calculate tax
+  let tax = subtotal * taxRate;
+  tax = parseFloat(tax.toFixed(2)); // Trim to 2 decimal points
+
+  // Calculate total price
+  let totalPrice = subtotal + tax + 15.0;
+  totalPrice = parseFloat(totalPrice.toFixed(2)); // Trim to 2 decimal points
+
+  console.log("Total quantity of products in cart: " + totalQuantity);
+  console.log("Subtotal before tax: " + subtotal);
+  console.log("Tax: " + tax);
+  console.log("Total price including tax: " + totalPrice);
+
+  res.render("cart", { items: cartProducts, totalQuantity: totalQuantity, subtotal: subtotal, tax: tax, totalPrice: totalPrice });
+}
+
+
+
 // Function to handle user logout
 function logout(req, res, next){
   req.session.currentUser = null;
   res.redirect("/");
+  console.log("user logged out successfully");
 }
+
+
 
 // Exporting all functions
 module.exports = {
@@ -306,5 +465,10 @@ module.exports = {
   leaveReview,
   generateProfile,
   markSold,
-  logout
+  logout,
+  addToCart,
+  getCartProducts,
+  updateCartProductQuantity,
+   removeCartProduct,
+   purchaseCart
 };

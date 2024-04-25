@@ -12,7 +12,11 @@
         <!-- body1_container holds the header/navigation bar thats present on every page-->
         <div id="body1_container"><!--inline-->
             
-            <img src="/images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
+            <div>
+                <a href="/user/main">
+                    <img src="/images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
+                </a>
+            </div>
 
             <div id="search">
                 <input type="text" class="search_bar" placeholder="Search">
@@ -40,11 +44,15 @@
             </div>
 
             <div>
-                <button class="nav_bar" >Cart 🛒</button>
+                <form action="/user/cartProducts" method="GET">
+                    <button type="submit" class="nav_bar">Cart 🛒</button>
+                </form> 
             </div>
 
             <div>
-                <button id="index-logout-btn" class="nav_bar" >Logout</button>
+                <form id="logout" action="/user/logout" method="POST">
+                    <button id="index-logout-btn" class="nav_bar" >Logout</button>
+                </form>            
             </div>
         </div>
     </header>

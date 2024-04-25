@@ -20,5 +20,11 @@ router.post("/makeReview", userController.leaveReview);
 router.get("/profile", userController.generateProfile);
 router.post("/sold", userController.markSold);
 router.post("/logout", userController.logout);
+router.post("/addToCart", userController.addToCart);
+router.get("/cartProducts", userController.getCartProducts);
+router.post("/updateQuantity", userController.updateCartProductQuantity);
+router.post("/removeCartProduct", userController.removeCartProduct);
+router.post("/purchaseCart", userController.removeCartProduct);
+
 
 module.exports = router;
