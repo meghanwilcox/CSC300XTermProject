@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripting/cart.js"></script>
+
+
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripting/cart.js"></script>
+
+
+</head>
+
+<body>
+
+    <header>
+        <!-- body1_container holds the header/navigation bar thats present on every page-->
+        <div id="body1_container"><!--inline-->
+
+            <a href="index.html">
+                <img src="images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
+            </a>
+
+            <div id="search">
+                <input type="text" class="search_bar" placeholder="Search">
+            </div>
+
+            <div>
+                <button class="nav_bar" onclick="window.location.href='productlist-coffee.html'">Coffee</button>
+            </div>
+
+            <div>
+                <button class="nav_bar" onclick="window.location.href='productlist-tea.html'">Tea</button>
+            </div>
+
+            <div>
+                <button class="nav_bar"
+                    onclick="window.location.href='productlist-accessories.html'">Accessories</button>
+            </div>
+
+            <div>
+                <button class="nav_bar" onclick="window.location.href='cart.html'"
+                    style="background-color: saddlebrown;">Cart 🛒</button>
+            </div>
+
+            <div>
+                <button class="nav_bar" onclick="window.location.href='login.html'">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Shopping Cart</h1>
+
+        <!-- Cart Item 1 -->
+        <div class="cart-item">
+            <div class="product">
+                <img src="images/Cortado.jpg" alt="Product 1 Image" class="product-image-cart">
+                <div class="details">
+                    <p class="Cortado">Coffee</p>
+                    <p class="price">$6.50</p>
+                </div>
+            </div>
+            <div class="quantity">
+                <input type="number" value="1" min="1" class="quantity-input">
+                <input type="number" id="quantity-input" value="1">
+                <button
+                    onclick="editCartProductQuantity(userId, cartId, productId, document.getElementById('quantity-input').value)">Update
+                </button>
+                <button onclick="removeFromCart(userId, cartId, productId)">Remove from Cart</button>
+            </div>
+            <div class="total">$6.50</div>
+        </div>
+
+        <!-- Cart Item 2 -->
+        <div class="cart-item">
+            <div class="product">
+                <img src="images/Black%20Tea.jpg" alt="Product 2 Image" class="product-image-cart">
+                <div class="details">
+                    <p class="name">Black Tea</p>
+                    <p class="price">$3.00</p>
+                </div>
+            </div>
+            <div class="quantity">
+                <input type="number" value="2" min="1" class="quantity-input">
+                <button
+                    onclick="editCartProductQuantity(userId, cartId, productId, document.getElementById('quantity-input').value)">Update
+                </button>
+                <button onclick="removeFromCart(userId, cartId, productId)">Remove from Cart</button>
+            </div>
+            <div class="total">$6.00</div>
+        </div>
+
+        <!-- Cart Total -->
+        <div class="cart-total">
+            <p>Total Items: 3</p>
+            <p>Subtotal: $12.50</p>
+            <p>Tax (6.75%): $0.84</p>
+            <p>Delivery Fee: $15.00</p>
+
+            <p>Total: $28.34</p>
+        </div>
+
+        <!-- Checkout Button -->
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+
+
+    <footer><!--this is the footer-->
+        <div id="footer_background">
+            <div id="coffee_bean_footer_accent">
+                <p>Copyright © 2024 Sip 'n Snuggles</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
