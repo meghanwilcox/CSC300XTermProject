@@ -1,0 +1,44 @@
+<%- include('./partials/admin-head') %>
+ <!--this container holds the cat prints that go across the screen as a divider-->
+ <div class="cat_prints_container"> <!--block-->
+    <hr class="cat_prints">
+</div>
+
+<!-- the hook is the box of text below the nav bar-->
+<div id="hook"> <!--inline-->
+    <h1>🐱 Welcome Admin! 🐱</h1>
+    <h2>Select an action to proceed:</h2>
+
+    <!-- this container holds links to the bulk upload and product edit pages -->
+    <div id="admin-button-container">
+        <div>
+            <form action="/admin/all" method="GET">
+                <button class="btn" type="submit" >Product Edit</button>
+            </form>
+        </div>
+
+        <div>
+            <form action="/admin/loadBulkUpload" method="GET">
+                <button class="btn" type="submit">Bulk Product Upload</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--this container holds the cat prints that go across the screen as a divider-->
+<div class="cat_prints_container"> <!--block-->
+    <hr class="cat_prints">
+</div>
+
+<footer><!--this is the footer-->
+    <div id="footer_background">
+        <div id="coffee_bean_footer_accent">
+            <p>Copyright © 2024 Sip 'n Snuggles</p>
+        </div>
+    </div>
+</footer>
+</body>
+
+
+
+</html>

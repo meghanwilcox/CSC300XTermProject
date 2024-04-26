@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sip 'n Snuggles: Coffee for a Cause</title>
+    <link rel="stylesheet" href="/admin.css">
+    <meta charset="utf-8">
+
+</head>
+
+<body>
+    <header>
+        <!-- body1_container holds the header/navigation bar thats present on every page-->
+        <div id="body1_container"><!--inline-->
+            
+            <a href="/admin/main">
+                <img src="/images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
+            </a>
+
+            <div id="admin-title">
+                Administrator
+            </div>
+
+            <div>
+                <form action="/admin/all" method="GET">
+                    <button class="nav_bar" type="submit">Product Edit</button>
+                </form>
+            </div>
+
+            <div>
+                <form action="/admin/loadBulkUpload" method="GET">
+                    <button class="nav_bar" type="submit">Bulk Product Upload</button>
+                </form>
+            </div>
+
+            <div>
+                <form id="logout" action="/admin/logout" method="POST">
+                    <button class="nav_bar" type="submit">Log Out</button>
+                </form> 
+            </div>
+        </div>
+    </header>

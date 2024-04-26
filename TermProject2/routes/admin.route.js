@@ -4,10 +4,14 @@ const router = express.Router();
 
 const adminController = require("../controllers/admin.controller");
 
-router.get("/all", adminController.getAllToBeApproved);
-router.post("/approve/:itemID", adminController.approveItem);
-router.post("/remove/:itemID", adminController.removeItem);
-router.get("/users-list", adminController.getFlaggedUsers);
-router.post("/removeFlag/:userName", adminController.removeFlag);
-router.post("/banUser/:userName", adminController.banUser);
+router.get("/main", adminController.loadMainPage);
+router.get("/loadProdEdit", adminController.loadProductEditPage);
+router.get("/loadBulkUpload", adminController.loadBulkUpload);
+router.post("/logout", adminController.logout);
+router.post("/listItem", adminController.listNewItem);
+router.get("/all", adminController.getAll);
+router.post("/editItem/:productID", adminController.editItem);
+router.post("/search", adminController.search);
+router.post("/getCategory", adminController.getByCategory);
+
 module.exports = router;
