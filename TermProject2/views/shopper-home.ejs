@@ -5,16 +5,9 @@
         <h1>🐱 Every cup of coffee or tea from Sip 'n Snuggles helps a homeless cat find its forever home! 🐱</h1>
     </div>
 
-    <!-- the body2 container holds the splash image and a link to browse our coffees and teas-->
-    <div id="body2_container"> <!--block-->
-        <div>
-            <button id="browse_button" >Discover <br> Our Impact</button>
-        </div>
-    </div>
-
     <!--the welcome_bar container holds the description of the business-->
     <div id="welcome_bar"> <!--block-->
-        <h2>
+        <h2 id="cat_fact">
             Welcome to Sip 'n Snuggles! We are a fully online, non-profit shop selling coffees, teas, and beverage
             accessories.
             We were founded with a passion for cozy drinks and animals, so we donate 100% of the profits from our shop
@@ -29,24 +22,46 @@
         </h2>
     </div>
 
+    <!-- the body2 container holds the splash image and a link to browse our coffees and teas-->
+    <div id="body2_container">
+        <form action="/user/impact" method="GET">
+            <button type="submit" id="browse_button">Discover <br> Our Impact</button>
+        </form>            
+    </div>
+    
+    
+
+    <!-- CAT FACTS API -->
+    <h2 id="cat-head">Fun Cat Fact</h2>
+    <div id="cat_fact_container">
+        <% if (catFact) { %>
+          <p id="cat_fact"><%= catFact %></p>
+        <% } else { %>
+          <p id="cat_fact_error">Failed to fetch cat fact. Please try again later.</p>
+        <% } %>
+      </div>
+
     <!--this container holds the cat prints that go across the screen as a divider-->
     <div class="cat_prints_container"> <!--block-->
         <hr class="cat_prints">
     </div>
 
 
+    <h2 id="cat-head">Check Out These Cool Products</h2>
+
     <!--this container holds the featured product section-->
-    <div class="fproduct" id="fproduct-container">
+    <div id="fitem-list">
         <% for (const item of items){ %>
-            <div class="featured-product">
+            <div class="product-item">
                 <a href="/user/item-details/<%= item.productID %>">
-                    <img src="<%= item.imageURL %>">
+                    <img class="product-image" src="/images/<%= item.imageURL %>" alt="<%= item.name %>">
                 </a>
-                <p><%= item.name %></p>
-                <p><%= item.price %></p>
+                <h3><%= item.name %></h3>
+                <p>$<%= item.price %></p>
             </div>
             <% } %>
     </div>
+
     
     <!--this container holds the cat prints that go across the screen as a divider-->
     <div class="cat_prints_container"> <!--block-->
