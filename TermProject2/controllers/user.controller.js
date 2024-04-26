@@ -352,8 +352,7 @@ function logout(req, res, next){
 
   //check if a cart exists for this user
   const cart = model.getCart(userID);
-  
-  if(!JSON.stringify(cart)){
+  if(JSON.stringify(cart)){
     //no cart exists for user, can logout
     req.session.currentUser = null;
     res.redirect("/");
