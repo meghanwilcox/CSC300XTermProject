@@ -10,56 +10,56 @@
 <body>
     <header>
         <!-- body1_container holds the header/navigation bar thats present on every page-->
-        <div id="body1_container"><!--inline-->
-            
-            <div>
-                <a href="/user/main">
-                    <img src="/images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
-                </a>
-            </div>
-
-            <div id="search">
-                <input type="text" class="search_bar" placeholder="Search">
-            </div>
-
-            <div id="search">
-                <form action="/user/search" method="POST">
+        <div id="body1_container">
+            <div class="header-row">
+                <div>
+                    <a href="/user/main">
+                        <img src="/images/sipnsnuggles_logo.png" id="logo" alt="cat logo">
+                    </a>
+                </div>
+        
+                <div id="search">
+                    <form action="/user/search" method="POST">
                         <input type="text" class="search_bar" placeholder="Search" name="keyword">
-                        <button id="search-btn" type="submit">⌕</button>
-                </form>
+                        <!-- <button id="search-btn" type="submit">⌕</button> -->
+                    </form>
+                </div>
+        
+                <div>
+                    <form action="/user/cartProducts" method="GET">
+                        <button type="submit" class="nav_bar">Cart 🛒</button>
+                    </form> 
+                </div>
+        
+                <div>
+                    <form id="logout" action="/user/logout" method="POST">
+                        <button id="index-logout-btn" class="nav_bar" >Logout</button>
+                    </form>            
+                </div>
             </div>
-
-            <div>
-                <form action="/user/filter" method="POST">
-                    <input type="hidden" name="category" value="Coffee">
-                    <button type="submit" class="nav_bar">Coffee</button>
-                </form>            
-            </div>
-
-            <div>
-                <form action="/user/filter" method="POST">
-                    <input type="hidden" name="category" value="Tea">
-                    <button type="submit" class="nav_bar">Tea</button>
-                </form>            
-            </div>
-
-            <div>
-                <form action="/user/filter" method="POST">
-                    <input type="hidden" name="category" value="Accessories">
-                    <button type="submit" class="nav_bar">Accessories</button>
-                </form>            
-            </div>
-
-            <div>
-                <form action="/user/cartProducts" method="GET">
-                    <button type="submit" class="nav_bar">Cart 🛒</button>
-                </form> 
-            </div>
-
-            <div>
-                <form id="logout" action="/user/logout" method="POST">
-                    <button id="index-logout-btn" class="nav_bar" >Logout</button>
-                </form>            
+        
+            <div class="header-row2">
+                <div>
+                    <form action="/user/filter" method="POST">
+                        <input type="hidden" name="category" value="Coffee">
+                        <button type="submit" class="nav_bar">Coffee</button>
+                    </form>            
+                </div>
+        
+                <div>
+                    <form action="/user/filter" method="POST">
+                        <input type="hidden" name="category" value="Tea">
+                        <button type="submit" class="nav_bar">Tea</button>
+                    </form>            
+                </div>
+        
+                <div>
+                    <form action="/user/filter" method="POST">
+                        <input type="hidden" name="category" value="Accessories">
+                        <button type="submit" class="nav_bar">Accessories</button>
+                    </form>            
+                </div>
             </div>
         </div>
+        
     </header>

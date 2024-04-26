@@ -17,6 +17,7 @@ router.get("/cartProducts", userController.getCartProducts);
 router.post("/updateQuantity", userController.updateCartProductQuantity);
 router.post("/removeCartProduct", userController.removeCartProduct);
 router.post("/purchaseCart", userController.purchaseCart);
+router.get("/impact", userController.impactPage);
 
 
 module.exports = router;
