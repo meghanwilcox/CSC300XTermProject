@@ -63,7 +63,7 @@ function login(req, res, next){
     // Redirecting user based on role
     if(user[0].userType === 'admin'){
       console.log('admin logged in successfully!');
-      //res.redirect('/admin/main');
+      res.redirect('/admin/main');
     }
     else{
       console.log('user logged in successfully');

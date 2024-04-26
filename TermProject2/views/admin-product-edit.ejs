@@ -1,0 +1,128 @@
+<%- include('./partials/admin-head') %>
+<!--this container holds the cat prints that go across the screen as a divider-->
+<div class="cat_prints_container"> <!--block-->
+    <hr class="cat_prints">
+</div>
+
+<!-- the hook is the box of text below the nav bar-->
+<div id="hook">
+    <!-- this container holds the section to list a new product -->
+    <div>
+        <h1>List a New Product</h1>
+        <div id="new-product-container">
+            <form action="/admin/listItem" method="POST">
+                <div>
+                    <label>Product Name: </label>
+                    <input type="text" id="name" name="name"><br>
+                    <label>Price: </label>
+                    <input type="text" id="cost" name="price"><br>
+                    <label>ImageURL:</label>
+                    <input type="text" id="path" name="imageURL"><br>
+                    <label>Category: </label>
+                    <select id="category" name="category">
+                        <option value="Coffee">Coffee</option>
+                        <option value="Tea">Tea</option>
+                        <option value="Accessories">Accessories</option>
+                    </select><br>
+                    <label>Quantity:</label>
+                    <input type="text" id="path" name="quantity"><br>
+                </div>
+                <div>
+                    <label>Description: </label>
+                    <textarea id="description" rows="5" cols="30" name="description"></textarea><br>
+                </div>
+            
+                <div id="new-prod-buttons">
+                    <button type="submit" id="edit-submit" class="submit">Submit</button>
+                </div>
+            </form>
+
+        </div>
+            
+
+
+    </div>
+
+    <!--this container holds the cat prints that go across the screen as a divider-->
+    <div class="cat_prints_container"> <!--block-->
+        <hr class="cat_prints">
+    </div>
+
+    <!-- this container holds the title and the search bar -->
+    <div id="search-edit">
+        <h1>Select a product below to edit the product details:</h1>
+        <form action="/admin/search" method="POST">
+            <input type="text" class="search_bar" placeholder="Search" name="keyword">
+            <button id="search-btn" type="submit">⌕</button>
+    </form>
+    </div>
+
+    <!-- this container holds the button to filter by a selected category -->
+    <div id="category-filter">
+        <form action="/admin/getCategory" method="POST">
+            <p>Select a Category: </p>
+        <select id="category-filter-select" name="category">
+            <option value="Coffee">Coffee</option>
+            <option value="Tea">Tea</option>
+            <option value="Accessories">Accessories</option>
+        </select><br>
+        <button type="submit">Filter</button>
+        </form>
+    </div>
+
+    <!-- this container holds all the products that are listed on the site -->
+    <div id="item-list">
+        <% for (const item of items){ %>
+        <div id="new-product-container">
+                <form action="/admin/editItem/<%= item.productID %>" method="POST">
+                    <div>
+                        <label>Product Name: </label>
+                        <input type="text" id="name" name="name" value="<%= item.name %>"><br>
+                        <label>Price: </label>
+                        <input type="text" id="cost" name="price" value="<%= item.price %>"><br>
+                        <label>ImageURL:</label>
+                        <input type="text" id="path" name="imageURL" value="<%= item.imageURL %>"><br>
+                        <label>Category: </label>
+                        <select id="category" name="category" value="<%= item.category %>">
+                            <option value="Coffee">Coffee</option>
+                            <option value="Tea">Tea</option>
+                            <option value="Accessories">Accessories</option>
+                        </select><br>
+                        <label>Quantity:</label>
+                        <input type="text" id="path" name="quantity" value="<%= item.quantity %>"><br>
+                    </div>
+                    <div>
+                        <label>Description: </label>
+                        <input id="description" type="text" name="description" value="<%= item.description %>"><br>
+                    </div>
+                    <div>
+                        <label>Is Featured?: </label>
+                        <input id="isFeatured" type="number" name="isFeatured" value="<%= item.isFeatured %>"><br>
+                    </div>
+                
+                    <div id="new-prod-buttons">
+                        <button type="submit" id="edit-submit" class="submit">Submit</button>
+                    </div>
+                </form>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<!--this container holds the cat prints that go across the screen as a divider-->
+<div class="cat_prints_container">
+    <hr class="cat_prints">
+</div>
+
+<footer><!--this is the footer-->
+    <div id="footer_background">
+        <div id="coffee_bean_footer_accent">
+            <p>Copyright © 2024 Sip 'n Snuggles</p>
+        </div>
+    </div>
+</footer>
+</body>
+
+
+
+</html>

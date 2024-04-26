@@ -1,63 +1,92 @@
+"use strict";
+
+// Importing required modules
+const db = require("../models/db-conn");
+const path = require("path");
+
 // Function to retrieve all items awaiting approval
-function getAllToBeApproved() {
+function getAll() {
   // SQL query to select items with approval_status = 0
-  let sql = "SELECT * FROM Item WHERE approval_status = 0;";
+  let sql = "SELECT * FROM Products;";
   // Executing the query
   const data = db.all(sql);
   return data;
 };
 
-// Function to approve an item
-function approveItem(params){
-  // SQL query to update approval_status to 1 for the specified item
-  let sql = "UPDATE Item SET approval_status = 1 WHERE itemID = ?;";
-  // Executing the query with provided parameters
-  const response = db.run(sql, params);
-  return response;
-};
 
-// Function to remove an item
-function removeItem(params){
-  // SQL query to delete the specified item
-  let sql = "DELETE FROM Item WHERE itemID = ?;";
-  // Executing the query with provided parameters
-  const response = db.run(sql, params);
-  return response;
-};
+function loadItemToDB(userID, item) {
+  // Assuming item is an object with fields corresponding to your database columns
+  let sql = `INSERT INTO Products (userID, name, description, imageURL, price, quantity, category, isFeatured) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
 
-// Function to retrieve flagged users
-function getFlaggedUsers(){
-  // SQL query to select flagged users and their reasons
-  let sql ='SELECT User.userName, User.email, User.firstName, User.lastName, Flagged_Users.reason_Flagged FROM User INNER JOIN Flagged_Users ON User.userName = Flagged_Users.userName;';
-  // Executing the query
-  const data = db.all(sql);
+  // Extract values from the item object
+  const values = [userID, item.name, item.description, item.imageURL, item.price, item.quantity, item.category, item.isFeatured];
+
+  try {
+      // Execute the SQL query
+      db.run(sql, values);
+      console.log('Item added to the database:', item);
+  } catch (error) {
+      console.error('Error adding item to the database:', error);
+      // You might want to handle the error here, depending on your requirements
+      throw error; // Re-throwing the error to be caught in parseJSONFile
+  }
+}
+
+function listNewItem(userID, name, description, imageURL, price, quantity, category) {
+  // Assuming item is an object with fields corresponding to your database columns
+  let sql = `INSERT INTO Products (userID, name, description, imageURL, price, quantity, category, isFeatured) VALUES (?, ?, ?, ?, ?, ?, ?, 0);`;
+
+  // Extract values from the item object
+  const values = [userID, name, description, imageURL, price, quantity, category];
+
+  try {
+      // Execute the SQL query
+      db.run(sql, values);
+      console.log('Item added to the database:');
+  } catch (error) {
+      console.error('Error adding item to the database:', error);
+      // You might want to handle the error here, depending on your requirements
+  }
+}
+
+function editItem(name, description, imageURL, price, quantity, category, isFeatured, productID){
+  let sql = `UPDATE Products SET name = ?, description = ?, imageURL = ?, price = ?, quantity = ?, category = ?, isFeatured = ? WHERE productID = ?`;
+  const values = [name, description, imageURL, price, quantity, category, isFeatured, productID];
+
+  try {
+    db.run(sql, values);
+    console.log('Item updated successfully:', productID);
+  } catch (error) {
+    console.error('Error updating item:', error);
+    throw error; // Re-throwing the error to be caught in your controller or middleware
+  }
+}
+
+// Function to search for items by keyword
+function search(searchTerm){
+  // SQL query to search for items by keyword
+  let sql = "SELECT * FROM Products WHERE name LIKE ?;";
+  // Executing the query with provided parameters
+  const data = db.all(sql, `%${searchTerm}%`);
   return data;
+}; 
+
+// Function to retrieve items by category
+function getByCategory(params){
+  // SQL query to select items by category
+  let sql = 'SELECT * FROM Products WHERE category = ?;';
+  // Executing the query with provided parameters
+  const items = db.all(sql, params);
+  return items;
 };
 
-// Function to remove flag from a user
-function removeUserFlag(params){
-  // SQL query to delete flag for the specified user
-  let sql = "DELETE FROM Flagged_Users WHERE userName = ?;";
-  // Executing the query with provided parameters
-  const response = db.run(sql, params);
-  return response;
-};
-
-// Function to ban a user
-function banUser(params){
-  // SQL query to set banned status to 1 for the specified user
-  let sql = "UPDATE User SET banned = 1 WHERE userName = ?;";
-  // Executing the query with provided parameters
-  const response = db.run(sql, params);
-  return response;
-};
 
 // Exporting all functions
 module.exports = {
-  getAllToBeApproved,
-  approveItem,
-  removeItem,
-  getFlaggedUsers,
-  removeUserFlag,
-  banUser
+  getAll,
+  loadItemToDB,
+  listNewItem,
+  editItem,
+  search,
+  getByCategory
 };

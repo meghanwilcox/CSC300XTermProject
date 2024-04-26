@@ -1,0 +1,64 @@
+<%- include('./partials/admin-head') %>
+<!--this container holds the cat prints that go across the screen as a divider-->
+<div class="cat_prints_container"> <!--block-->
+    <hr class="cat_prints">
+</div>
+
+<!-- the hook is the box of text below the nav bar-->
+<div id="hook">
+    <!-- this container contains the info for the bulk upload section -->
+    <div id="container-bulk">
+        <h1>Bulk Product Upload</h1>
+
+        <form enctype="multipart/form-data" id="bulk-upload-form" action="/upload" method="POST">
+                <h2>Select a JSON file: </h2>
+                <input type="file" id="file" name="file"><br>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        <pre>
+
+                            Example JSON File
+
+                [
+                    {
+                        "name": "Product 1",
+                        "description": "Description 1",
+                        "imageURL": " /example/imagepath1.jpg",
+                        "price": 10.99,
+                        "quantity":  100,
+                        "category": "Coffee",
+                        "isFeatured": 0
+                    },
+                    {
+                        "name": "Product 2",
+                        "description": "Description 2",
+                        "imageURL": " /example/imagepath2.jpg",
+                        "price": 10.99,
+                        "quantity":  100,
+                        "category": "Tea",
+                        "isFeatured": 0
+                    },
+                    // ... more products
+                ]
+            </pre>
+
+    </div>
+</div>
+
+<!--this container holds the cat prints that go across the screen as a divider-->
+<div class="cat_prints_container"> <!--block-->
+    <hr class="cat_prints">
+</div>
+
+<footer><!--this is the footer-->
+    <div id="footer_background">
+        <div id="coffee_bean_footer_accent">
+            <p>Copyright © 2024 Sip 'n Snuggles</p>
+        </div>
+    </div>
+</footer>
+
+
+</html>
