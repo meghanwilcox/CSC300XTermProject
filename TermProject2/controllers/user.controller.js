@@ -28,12 +28,19 @@ function getAll(req, res, next) {
 }
 
 // Function to load the main page
-function loadMainPage(req, res, next){
-  let items = model.getFeaturedProducts();
-  try{
-    res.render("shopper-home", {items: items});
+async function loadMainPage(req, res, next){
+  try {
+    // Fetch a random cat fact from the Cat Facts API
+    const catFactResponse = await axios.get('https://catfact.ninja/fact');
+    const catFact = catFactResponse.data.fact;
+
+    // Retrieve featured products
+    const items = model.getFeaturedProducts();
+
+    // Render the main page with the cat fact and featured products
+    res.render("shopper-home", { catFact: catFact, items: items });
   } catch (err) {
-    console.error("Error while getting items ", err.message);
+    console.error("Error while loading main page: ", err.message);
     next(err);
   }
 }
@@ -380,6 +387,11 @@ function register(req, res, next){
     res.render("index");
 }
 
+// Function to render the admin bulk product upload page
+function impactPage(req, res) {
+  res.render('impact'); 
+}
+
 // Exporting all functions
 module.exports = {
   getAll,
@@ -395,5 +407,6 @@ module.exports = {
   updateCartProductQuantity,
   removeCartProduct,
   purchaseCart,
-  register
+  register,
+  impactPage
 };

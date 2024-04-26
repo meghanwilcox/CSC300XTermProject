@@ -11,14 +11,14 @@
             <hr class="cat_prints">
         </div>
 
-        <div id="product-list-container">
+        <div id="item-list">
             <% for (const item of items){ %>
-                <div class="listed-product">
+                <div class="product-item">
                     <a href="/user/item-details/<%= item.productID %>">
-                        <img src="<%= item.imageURL %>">
+                        <img class="product-image" src="/images/<%= item.imageURL %>" alt="<%= item.name %>">
                     </a>
-                    <p><%= item.name %></p>
-                    <p><%= item.price %></p>
+                    <h3><%= item.name %></h3>
+                    <p>$<%= item.price %></p>
                 </div>
                 <% } %>
         </div>
