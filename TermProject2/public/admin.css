@@ -58,9 +58,12 @@ header a{
     cursor: pointer;
 }
 
+
 #search{
     margin-top: 5px;
     margin-right: 50px;
+    width: 80px;
+    
 }
 
 input.search_bar{
@@ -78,6 +81,12 @@ input.search_bar{
 
 #search input.search_bar{
     height: 30px;
+}
+
+#search-btn{
+    background-color: rgb(193, 138, 99);
+    border: 5px solid rgb(207, 182, 114);
+    border-radius: 20px;
 }
 
 
@@ -104,7 +113,7 @@ input.search_bar{
 .cat_prints{
     height: 90px;
     border: 0px;
-    background-image: url('/TermProjectApplication/public/images/cat_prints.png');
+    background-image: url('/images/cat_prints.png');
     background-repeat: repeat-x;
     margin-top: 0px;
     margin-bottom: 10px;
@@ -238,6 +247,14 @@ input.search_bar{
     font-size: 15pt;
 }
 
+.example {
+    text-align: center;
+    font-size: x-large;
+    color: white;
+}
+
+
+
 footer #footer_background{
     display: flex;
     align-items: flex-end;
@@ -250,7 +267,7 @@ footer #coffee_bean_footer_accent{
     display:flex;
     justify-content: center;
     text-align: center;
-    background-image: url('/TermProjectApplication/public/images/coffee-beans.png');
+    background-image: url('/images/coffee-beans.png');
     background-repeat: repeat-x;
     width: 100%;
     height: 100px;
